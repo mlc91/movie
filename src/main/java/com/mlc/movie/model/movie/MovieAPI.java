@@ -1,5 +1,13 @@
 package com.mlc.movie.model.movie;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mlc.movie.model.credit.Credit;
+import com.mlc.movie.model.genre.Genre;
+import com.mlc.movie.model.productionCompany.ProductionCompany;
+import com.mlc.movie.model.productionCompany.ProductionCompanyAPI;
+import com.mlc.movie.model.productionCountry.ProductionCountry;
+import com.mlc.movie.model.productionCountry.ProductionCountryAPI;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -7,145 +15,46 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
 public class MovieAPI {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    private Long movieId;
-
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("adult")
     private boolean adult;
+    @JsonProperty("backdrop_path")
     private String backdropPath;
-    private Object[] genres;
+    @JsonProperty("budget")
+    private int budget;
+    @JsonProperty("genres")
+    private Genre[] genres;
+    @JsonProperty("original_language")
     private String originalLanguage;
+    @JsonProperty("original_title")
     private String originalTitle;
+    @JsonProperty("overview")
     private String overview;
+    @JsonProperty("popularity")
     private Float popularity;
-    private String porterPath;
+    @JsonProperty("poster_path")
+    private String posterPath;
+    @JsonProperty("production_companies")
+    private ProductionCompanyAPI[] productionCompanies;
+    @JsonProperty("production_countries")
+    private ProductionCountryAPI[] productionCountries;
+    @JsonProperty("release_date")
     private String releaseDate;
+    @JsonProperty("revenue")
+    private int revenue;
+    @JsonProperty("status")
+    private String status;
+    @JsonProperty("title")
     private String title;
-    private boolean video;
+    @JsonProperty("vote_average")
     private Float voteAverage;
+    @JsonProperty("vote_count")
     private int voteCount;
 
     public MovieAPI() {
     }
 
-    public Long getMovieId() {
-        return movieId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public boolean isAdult() {
-        return adult;
-    }
-
-    public void setAdult(boolean adult) {
-        this.adult = adult;
-    }
-
-    public String getBackdropPath() {
-        return backdropPath;
-    }
-
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
-    }
-
-    public Object[] getGenres() {
-        return genres;
-    }
-
-    public void setGenres(Object[] genres) {
-        this.genres = genres;
-    }
-
-    public String getOriginalLanguage() {
-        return originalLanguage;
-    }
-
-    public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
-    }
-
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
-
-    public Float getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(Float popularity) {
-        this.popularity = popularity;
-    }
-
-    public String getPorterPath() {
-        return porterPath;
-    }
-
-    public void setPorterPath(String porterPath) {
-        this.porterPath = porterPath;
-    }
-
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public boolean isVideo() {
-        return video;
-    }
-
-    public void setVideo(boolean video) {
-        this.video = video;
-    }
-
-    public Float getVoteAverage() {
-        return voteAverage;
-    }
-
-    public void setVoteAverage(Float voteAverage) {
-        this.voteAverage = voteAverage;
-    }
-
-    public int getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(int voteCount) {
-        this.voteCount = voteCount;
-    }
 }
