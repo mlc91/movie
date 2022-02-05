@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class SearchAPIHelper {
     private final static String URL_SEARCH_MOVIES = "https://api.themoviedb.org/3/search/movie?api_key=fcc99eaef0e81ed1ea81c258bd54257b";
     private final static String URL_SEARCH_PERSONS = "https://api.themoviedb.org/3/search/person?api_key=fcc99eaef0e81ed1ea81c258bd54257b";
+    private final static String URL_SEARCH_COMPANIES = "https://api.themoviedb.org/3/search/company?api_key=fcc99eaef0e81ed1ea81c258bd54257b";
     private final static String URL_SEARCH_CREDIT_1 = "https://api.themoviedb.org/3/movie/";
     private final static String URL_SEARCH_CREDIT_2 = "/credits?api_key=fcc99eaef0e81ed1ea81c258bd54257b";
     private final static String URL_SEARCH_MOVIE_1 = "https://api.themoviedb.org/3/movie/";
@@ -93,6 +94,19 @@ public class SearchAPIHelper {
 
     public static SearchAPI searchPersonsRegionAPI(String query, String region){
         String url = URL_SEARCH_PERSONS + "&region=" + region + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        SearchAPI result = restTemplate.getForObject(url, SearchAPI.class);
+        return result;
+    }
+    public static SearchAPI searchCompaniesAPI(String query){
+        String url = URL_SEARCH_COMPANIES + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        SearchAPI result = restTemplate.getForObject(url, SearchAPI.class);
+        return result;
+    }
+
+    public static SearchAPI searchCompaniesPageAPI(String query, int page){
+        String url = URL_SEARCH_COMPANIES + "&page" + page + "&query=" + query;
         RestTemplate restTemplate = new RestTemplate();
         SearchAPI result = restTemplate.getForObject(url, SearchAPI.class);
         return result;

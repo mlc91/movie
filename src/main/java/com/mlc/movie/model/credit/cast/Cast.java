@@ -1,45 +1,24 @@
 package com.mlc.movie.model.credit.cast;
 
 import com.mlc.movie.model.person.Person;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class Cast {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    //@GenericGenerator(name = "native", strategy = "native")
-    private Long id;
-    private Person person;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private Long castId;
+    @OneToMany
+    private List<Person> persons;
     private String character;
-    private int order;
+    private int castOrder;
 
     public Cast() {
     }
 
-    public Long getId(){
-        return id;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    public String getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(String character) {
-        this.character = character;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
 }

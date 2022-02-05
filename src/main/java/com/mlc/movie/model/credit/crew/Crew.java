@@ -1,37 +1,23 @@
 package com.mlc.movie.model.credit.crew;
 
 import com.mlc.movie.model.person.Person;
+import org.hibernate.annotations.GenericGenerator;
 
-//@Entity
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class Crew {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    //@GenericGenerator(name = "native", strategy = "native")
-    private Long id;
-    private Person person;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private Long crewId;
+    @OneToMany
+    private List<Person> persons;
     private String job;
 
     public Crew() {
     }
 
-    public Long getId(){
-        return id;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    public String getJob() {
-        return job;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
 }

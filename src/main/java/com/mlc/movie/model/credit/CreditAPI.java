@@ -14,27 +14,4 @@ public class CreditAPI {
     public CreditAPI() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public CastAPI[] getCast() {
-        return cast;
-    }
-
-    public void setCast(CastAPI[] cast) {
-        this.cast = cast;
-    }
-
-    public CrewAPI[] getCrew() {
-        return crew;
-    }
-
-    public void setCrew(CrewAPI[] crew) {
-        this.crew = crew;
-    }
 }

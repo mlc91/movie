@@ -18,8 +18,7 @@ public class Person {
     private String biography;
     private String birthday;
     private String deathday;
-    //One to one
-    //private Gender gender;
+    private int gender;
     private String imdbId;
     private String knownForDepartment;
     private String name;
@@ -27,8 +26,8 @@ public class Person {
     private Float popularity;
     private String profilePath;
 
-    //ver cómo distinguir entre cast y crew
-    // booleans isCast and isCrew ??
+    // TODO ver cómo distinguir entre cast y crew
+    // TODO booleans isCast and isCrew ??
 
     public Person() {
     }

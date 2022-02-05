@@ -13,54 +13,89 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/search")
 public class SearchController {
-    @GetMapping("movies/{query}")
+    @GetMapping("movies/query/{query}")
     public SearchAPI getMoviesAPI(@PathVariable String query){
         SearchAPI result = SearchAPIHelper.searchMoviesAPI(query);
         return result;
     }
 
-    @GetMapping("movies/{query}/{language}")
+    @GetMapping("movies/language/{query}/{language}")
     public SearchAPI getMoviesLanguageAPI(@PathVariable String query, @PathVariable String language){
         SearchAPI result = SearchAPIHelper.searchMoviesLanguageAPI(query, language);
         return result;
     }
 
-    @GetMapping("movies/{query}/{page}")
+    @GetMapping("movies/page/{query}/{page}")
     public SearchAPI getMoviesPageAPI(@PathVariable String query, @PathVariable int page){
         SearchAPI result = SearchAPIHelper.searchMoviesPageAPI(query, page);
         return result;
     }
 
-    @GetMapping("movies/{query}/{includeAdult}")
+    @GetMapping("movies/adult/{query}/{includeAdult}")
     public SearchAPI getMoviesIncludeAdultAPI(@PathVariable String query, @PathVariable boolean includeAdult){
         SearchAPI result = SearchAPIHelper.searchMoviesIncludeAdultAPI(query, includeAdult);
         return result;
     }
 
-    @GetMapping("movies/{query}/{region}")
+    @GetMapping("movies/region/{query}/{region}")
     public SearchAPI getMoviesRegionAPI(@PathVariable String query, @PathVariable String region){
         SearchAPI result = SearchAPIHelper.searchMoviesRegionAPI(query, region);
         return result;
     }
 
-    @GetMapping("movies/{query}/{year}")
+    @GetMapping("movies/year/{query}/{year}")
     public SearchAPI getMoviesYearAPI(@PathVariable String query, @PathVariable int year){
         SearchAPI result = SearchAPIHelper.searchMoviesYearAPI(query, year);
         return result;
     }
 
-    @GetMapping("movies/{query}/{releaseYear}")
+    @GetMapping("movies/release/{query}/{releaseYear}")
     public SearchAPI getMoviesReleaseYearAPI(@PathVariable String query, @PathVariable int releaseYear){
         SearchAPI result = SearchAPIHelper.searchMoviesReleaseYearAPI(query, releaseYear);
         return result;
     }
 
-    @GetMapping("persons/{query}")
+    @GetMapping("persons/query/{query}")
     public SearchAPI getPersonsAPI(@PathVariable String query){
         SearchAPI result = SearchAPIHelper.searchPersonsAPI(query);
         return result;
     }
 
+    @GetMapping("persons/language/{query}/{language}")
+    public SearchAPI getPersonsLanguageAPI(@PathVariable String query, @PathVariable String language){
+        SearchAPI result = SearchAPIHelper.searchPersonsLanguageAPI(query, language);
+        return result;
+    }
+
+    @GetMapping("persons/page/{query}/{page}")
+    public SearchAPI getPersonsAPI(@PathVariable String query, @PathVariable int page){
+        SearchAPI result = SearchAPIHelper.searchPersonsPageAPI(query, page);
+        return result;
+    }
+    @GetMapping("persons/adult/{query}/{includeAdult}")
+    public SearchAPI getPersonsAPI(@PathVariable String query, @PathVariable boolean includeAdult){
+        SearchAPI result = SearchAPIHelper.searchPersonsIncludeAdultAPI(query, includeAdult);
+        return result;
+    }
+    @GetMapping("persons/region/{query}/{region}")
+    public SearchAPI getPersonsAPI(@PathVariable String query, @PathVariable String region){
+        SearchAPI result = SearchAPIHelper.searchPersonsRegionAPI(query, region);
+        return result;
+    }
+
+    @GetMapping("companies/query/{query}")
+    public SearchAPI getCompaniesAPI(@PathVariable String query){
+        SearchAPI result = SearchAPIHelper.searchCompaniesAPI(query);
+        return result;
+    }
+
+    @GetMapping("companies/page/{query}/{region}")
+    public SearchAPI getCompaniesPageAPI(@PathVariable String query, @PathVariable int page){
+        SearchAPI result = SearchAPIHelper.searchCompaniesPageAPI(query, page);
+        return result;
+    }
+
+    //TODO move the following methods to other class...
     @GetMapping("credits/{movie_id}")
     public CreditAPI getCreditsAPI(@PathVariable String movie_id){
         CreditAPI result = SearchAPIHelper.searchCreditsAPI(movie_id);

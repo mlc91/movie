@@ -3,12 +3,11 @@ package com.mlc.movie.model.movie;
 import com.mlc.movie.model.credit.Credit;
 import com.mlc.movie.model.genre.Genre;
 import com.mlc.movie.model.productionCompany.ProductionCompany;
+import com.mlc.movie.model.productionCountry.ProductionCountry;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Movie {
@@ -21,19 +20,19 @@ public class Movie {
     private boolean adult;
     private String backdropPath;
     private int budget;
-    //One to many
-    //private Genre[] genres;
-    //One to one
-    //private Credit credit;
+    @OneToMany
+    private List<Genre> genres;
+    @OneToOne
+    private Credit credit;
     private String originalLanguage;
     private String originalTitle;
     private String overview;
     private Float popularity;
     private String posterPath;
-    // One to many
-    // private ProductionCompany[] productionCompanies;
-    // One to many
-    // private ProductionCountry[] productionContries;
+    @OneToMany
+    private List<ProductionCompany> productionCompanies;
+    @OneToMany
+    private List<ProductionCountry> productionContries;
     private String releaseDate;
     private int revenue;
     private String status;
