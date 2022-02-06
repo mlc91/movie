@@ -109,25 +109,23 @@ public class SearchController {
     }
 
     //TODO move the following methods to other class...
-    @GetMapping("credits/{movie_id}")
-    public CreditDTO getCreditsAPI(@PathVariable String movie_id){
-        String url = URLConstants.URL_SEARCH_CREDIT_1 + movie_id + URLConstants.URL_SEARCH_CREDIT_2;
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, CreditDTO.class);
+    @GetMapping("credits/{movieId}")
+    public CreditDTO getCreditsAPI(@PathVariable String movieId){
+
     }
 
-    @GetMapping("movie/{movie_id}")
-    public MovieDTO getMovieAPI(@PathVariable String movie_id){
-        String url = URLConstants.URL_SEARCH_MOVIE_1 + movie_id + URLConstants.URL_SEARCH_MOVIE_2;
+    // TODO tomar el método anterior y pegarlo en este para poder obtener los credits
+    @GetMapping("movie/{movieId}")
+    public MovieDTO getMovieAPI(@PathVariable String movieId){
+        String url = URLConstants.URL_SEARCH_MOVIE_1 + movieId + URLConstants.URL_SEARCH_MOVIE_2;
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(url, MovieDTO.class);
     }
 
-    @GetMapping("person/{person_id}")
-    public PersonDTO getPersonAPI(@PathVariable String person_id){
+    @GetMapping("person/{personId}")
+    public PersonDTO getPersonAPI(@PathVariable String personId){
         RestTemplate restTemplate = new RestTemplate();
-        String url =  URLConstants.URL_SEARCH_PERSON_1 + person_id + URLConstants.URL_SEARCH_PERSON_2;
+        String url =  URLConstants.URL_SEARCH_PERSON_1 + personId + URLConstants.URL_SEARCH_PERSON_2;
         return restTemplate.getForObject(url, PersonDTO.class);
     }
-
 }

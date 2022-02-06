@@ -15,9 +15,16 @@ public class Credit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private Long creditId;
+    private Long id;
     @OneToMany
     private List<Cast> casts;
     @OneToMany
     private List<Crew> crews;
+
+    public static Credit setCreditFromCreditDTO(CreditDTO creditDTO) {
+        Credit credit = new Credit();
+        credit.setCasts(credit.getCasts());
+        credit.setCrews(credit.getCrews());
+        return credit;
+    }
 }

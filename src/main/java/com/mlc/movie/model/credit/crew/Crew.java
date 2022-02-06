@@ -14,9 +14,16 @@ public class Crew {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private Long crewId;
-    @OneToMany
-    private List<Person> persons;
+    private Long id;
+//    @OneToMany
+//    private List<Person> persons;
     private String job;
+
+    public static Crew setCrewFromCrewDTO(CrewDTO crewDTO){
+        Crew crew = new Crew();
+        // todo ver cómo guardar persons
+        crew.setJob(crewDTO.getJob());
+        return crew;
+    }
 
 }

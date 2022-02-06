@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CrewDTO {
-    private Long id;
+    private String id;
     private String department;
     private int gender;
     private String job;

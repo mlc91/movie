@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
 public class PersonDTO {
-    private int id;
+    private String id;
     private String biography;
     private String birthday;
     private String deathday;
@@ -22,8 +22,5 @@ public class PersonDTO {
     private Float popularity;
     @JsonProperty("profile_path")
     private String profilePath;
-
-    public PersonDTO() {
-    }
 
 }

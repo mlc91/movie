@@ -2,19 +2,29 @@ package com.mlc.movie.model.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mlc.movie.model.productionCompany.ProductionCompanyAPI;
-import com.mlc.movie.model.productionCountry.ProductionCountryAPI;
+import com.mlc.movie.model.credit.Credit;
+import com.mlc.movie.model.genre.Genre;
+import com.mlc.movie.model.person.Person;
+import com.mlc.movie.model.person.PersonDTO;
+import com.mlc.movie.model.productionCompany.ProductionCompany;
+import com.mlc.movie.model.productionCompany.ProductionCompanyDTO;
+import com.mlc.movie.model.productionCountry.ProductionCountry;
+import com.mlc.movie.model.productionCountry.ProductionCountryDTO;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
 public class MovieDTO {
-    private int id;
+    private String id;
     private boolean adult;
     @JsonProperty("backdrop_path")
     private String backdropPath;
     private int budget;
-    private int genreId;
+    private Credit credit;
+    private List<Genre> genres;
+    private String homepage;
     @JsonProperty("original_language")
     private String originalLanguage;
     @JsonProperty("original_title")
@@ -24,9 +34,9 @@ public class MovieDTO {
     @JsonProperty("poster_path")
     private String posterPath;
     @JsonProperty("production_companies")
-    private ProductionCompanyAPI[] productionCompanies;
+    private List<ProductionCompany> productionCompanies;
     @JsonProperty("production_countries")
-    private ProductionCountryAPI[] productionCountries;
+    private List<ProductionCountry> productionCountries;
     @JsonProperty("release_date")
     private String releaseDate;
     private int revenue;
@@ -36,8 +46,5 @@ public class MovieDTO {
     private Float voteAverage;
     @JsonProperty("vote_count")
     private int voteCount;
-
-    public MovieDTO() {
-    }
 
 }

@@ -14,9 +14,17 @@ public class Cast {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private Long castId;
-    @OneToMany
-    private List<Person> persons;
+    private Long id;
+//    @OneToMany
+//    private List<Person> persons;
     private String character;
     private int castOrder;
+
+    public static Cast setCastFromCastDTO(CastDTO castDTO){
+        Cast cast = new Cast();
+        cast.setCharacter(castDTO.getCharacter());
+        // todo ver cómo guardar persons
+        cast.setCastOrder(castDTO.getOrder());
+        return cast;
+    }
 }

@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CastDTO {
-    private Long id;
+    private String id;
     private String character;
     private int gender;
     @JsonProperty("known_for_department")
