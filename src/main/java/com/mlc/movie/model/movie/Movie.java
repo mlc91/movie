@@ -1,31 +1,32 @@
 package com.mlc.movie.model.movie;
 
 import com.mlc.movie.model.credit.Credit;
-import com.mlc.movie.model.genre.Genre;
-import com.mlc.movie.model.productionCompany.ProductionCompany;
-import com.mlc.movie.model.productionCountry.ProductionCountry;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
+
+import static com.mlc.movie.searchHelper.SearchHelper.getCreditFromAPI;
 
 @Data
 @Entity
+@Table(name = "MOVIE")
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private String dtoId;
+    private String tmdbId;
     private boolean adult;
     private String backdropPath;
     private int budget;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CREDIT_ID", referencedColumnName = "id")
     private Credit credit;
-    @OneToMany
-    private List<Genre> genres;
+
+//    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+//    private List<Genre> genres;
     private String homepage;
     private String originalLanguage;
     private String originalTitle;
@@ -33,10 +34,10 @@ public class Movie {
     private String overview;
     private Float popularity;
     private String posterPath;
-    @OneToMany
-    private List<ProductionCompany> productionCompanies;
-    @OneToMany
-    private List<ProductionCountry> productionCountries;
+//    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+//    private List<ProductionCompany> productionCompanies;
+//    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+//    private List<ProductionCountry> productionCountries;
     private String releaseDate;
     private int revenue;
     private String status;
@@ -46,20 +47,21 @@ public class Movie {
 
     public static Movie setMovieFromMovieDTO(MovieDTO movieDTO){
         Movie movie = new Movie();
-        movie.setDtoId(movieDTO.getId());
+        movie.setTmdbId(movieDTO.getTmdbId());
         movie.setAdult(movieDTO.isAdult());
         movie.setBackdropPath(movieDTO.getBackdropPath());
         movie.setBudget(movieDTO.getBudget());
-        movie.setCredit(movieDTO.getCredit());
-        movie.setGenres(movieDTO.getGenres());
+        // TODO: buscar dónde hacer la llamada a la api
+        movie.setCredit(Credit.setCreditFromCreditDTO(getCreditFromAPI(movie.getTmdbId())));
+        //movie.setGenres(movieDTO.getGenres());
         movie.setHomepage(movieDTO.getHomepage());
         movie.setOriginalLanguage(movieDTO.getOriginalLanguage());
         movie.setOriginalTitle(movieDTO.getOriginalTitle());
         movie.setOverview(movieDTO.getOverview());
         movie.setPopularity(movieDTO.getPopularity());
         movie.setPosterPath(movieDTO.getPosterPath());
-        movie.setProductionCompanies(movieDTO.getProductionCompanies());
-        movie.setProductionCountries(movieDTO.getProductionCountries());
+//        movie.setProductionCompanies(movieDTO.getProductionCompanies());
+//        movie.setProductionCountries(movieDTO.getProductionCountries());
         movie.setReleaseDate(movieDTO.getReleaseDate());
         movie.setRevenue(movieDTO.getRevenue());
         movie.setStatus(movieDTO.getStatus());

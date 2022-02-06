@@ -2,7 +2,7 @@ package com.mlc.movie.searchHelper;
 
 import com.mlc.movie.URLConstants;
 import com.mlc.movie.model.credit.CreditDTO;
-import com.mlc.movie.model.movie.Movie;
+import com.mlc.movie.model.genre.GenreListDTO;
 import com.mlc.movie.model.movie.MovieDTO;
 import com.mlc.movie.model.person.PersonDTO;
 import org.springframework.web.client.RestTemplate;
@@ -15,17 +15,20 @@ public class SearchHelper {
     }
 
     public static MovieDTO getMovieFromAPI(String movieId){
-        MovieDTO movieDTO = new MovieDTO();
         String url = URLConstants.URL_SEARCH_MOVIE_1 + movieId + URLConstants.URL_SEARCH_MOVIE_2;
         RestTemplate restTemplate = new RestTemplate();
-        movieDTO = restTemplate.getForObject(url, MovieDTO.class);
-        //movieDTO.setCredit(getCredit(movieId));
-        return movieDTO;
+        return restTemplate.getForObject(url, MovieDTO.class);
     }
 
-    private static CreditDTO getCredit(String movieId){
+    public static CreditDTO getCreditFromAPI(String movieId){
         String url = URLConstants.URL_SEARCH_CREDIT_1 + movieId + URLConstants.URL_SEARCH_CREDIT_2;
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, CreditDTO .class);
+        return restTemplate.getForObject(url, CreditDTO.class);
+    }
+
+    public static GenreListDTO getGenresFromAPI(){
+        String url = URLConstants.URL_SEARCH_GENRES;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, GenreListDTO.class);
     }
 }

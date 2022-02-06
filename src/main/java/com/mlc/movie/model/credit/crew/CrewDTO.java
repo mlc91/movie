@@ -9,10 +9,7 @@ import lombok.Data;
 public class CrewDTO {
     private String id;
     private String department;
-    private int gender;
     private String job;
-    @JsonProperty("known_for_department")
-    private String knownForDepartment;
     private String name;
 
 }

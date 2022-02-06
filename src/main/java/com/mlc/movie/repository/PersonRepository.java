@@ -7,6 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface PersonRepository extends JpaRepository<Person, Long> {
-    Person findByDtoId(@Param("dtoId") String dtoId);
+    Person findByTmdbId(@Param("tmdbId") String tmdbId);
 
 }

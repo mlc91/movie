@@ -7,5 +7,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-    Movie findByDtoId(@Param("dtoId") String dtoId);
+    Movie findByTmdbId(@Param("tmdbId") String tmdbId);
 }

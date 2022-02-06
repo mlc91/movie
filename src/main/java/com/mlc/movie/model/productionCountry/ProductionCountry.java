@@ -1,12 +1,11 @@
 package com.mlc.movie.model.productionCountry;
 
+import com.mlc.movie.model.movie.Movie;
+import com.mlc.movie.model.person.Person;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -18,5 +17,7 @@ public class ProductionCountry {
     private Long id;
     private String iso_3166_1;
     private String name;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Movie movie;
 
 }

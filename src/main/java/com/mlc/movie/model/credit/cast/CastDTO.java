@@ -9,9 +9,6 @@ import lombok.Data;
 public class CastDTO {
     private String id;
     private String character;
-    private int gender;
-    @JsonProperty("known_for_department")
-    private String knownForDepartment;
     private String name;
     private int order;
 
