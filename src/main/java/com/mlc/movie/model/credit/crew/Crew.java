@@ -1,11 +1,13 @@
 package com.mlc.movie.model.credit.crew;
 
 import com.mlc.movie.model.person.Person;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 public class Crew {
 
@@ -16,8 +18,5 @@ public class Crew {
     @OneToMany
     private List<Person> persons;
     private String job;
-
-    public Crew() {
-    }
 
 }

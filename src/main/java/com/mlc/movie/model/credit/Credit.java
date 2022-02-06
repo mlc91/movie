@@ -2,11 +2,13 @@ package com.mlc.movie.model.credit;
 
 import com.mlc.movie.model.credit.cast.Cast;
 import com.mlc.movie.model.credit.crew.Crew;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 public class Credit {
 
@@ -18,7 +20,4 @@ public class Credit {
     private List<Cast> casts;
     @OneToMany
     private List<Crew> crews;
-
-    public Credit() {
-    }
 }

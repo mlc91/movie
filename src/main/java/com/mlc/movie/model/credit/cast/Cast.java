@@ -1,11 +1,13 @@
 package com.mlc.movie.model.credit.cast;
 
 import com.mlc.movie.model.person.Person;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 public class Cast {
 
@@ -17,8 +19,4 @@ public class Cast {
     private List<Person> persons;
     private String character;
     private int castOrder;
-
-    public Cast() {
-    }
-
 }

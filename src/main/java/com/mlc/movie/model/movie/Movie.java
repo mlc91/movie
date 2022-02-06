@@ -40,7 +40,4 @@ public class Movie {
     private Float voteAverage;
     private int voteCount;
 
-    public Movie() {
-    }
-
 }

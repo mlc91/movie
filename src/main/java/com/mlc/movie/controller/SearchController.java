@@ -1,117 +1,133 @@
 package com.mlc.movie.controller;
 
-import com.mlc.movie.helper.SearchAPIHelper;
-import com.mlc.movie.model.movie.MovieAPI;
-import com.mlc.movie.model.person.PersonAPI;
-import com.mlc.movie.model.search.SearchAPI;
-import com.mlc.movie.model.credit.CreditAPI;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.mlc.movie.URLConstants;
+import com.mlc.movie.model.credit.CreditDTO;
+import com.mlc.movie.model.movie.MovieDTO;
+import com.mlc.movie.model.person.PersonDTO;
+import com.mlc.movie.model.search.SearchDTO;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/search")
 public class SearchController {
+
     @GetMapping("movies/query/{query}")
-    public SearchAPI getMoviesAPI(@PathVariable String query){
-        SearchAPI result = SearchAPIHelper.searchMoviesAPI(query);
-        return result;
+    public SearchDTO getMoviesAPI(@PathVariable String query){
+        String url = URLConstants.URL_SEARCH_MOVIES + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("movies/language/{query}/{language}")
-    public SearchAPI getMoviesLanguageAPI(@PathVariable String query, @PathVariable String language){
-        SearchAPI result = SearchAPIHelper.searchMoviesLanguageAPI(query, language);
-        return result;
+    public SearchDTO getMoviesLanguageAPI(@PathVariable String query, @PathVariable String language){
+        String url = URLConstants.URL_SEARCH_MOVIES + "&language=" + language + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("movies/page/{query}/{page}")
-    public SearchAPI getMoviesPageAPI(@PathVariable String query, @PathVariable int page){
-        SearchAPI result = SearchAPIHelper.searchMoviesPageAPI(query, page);
-        return result;
+    public SearchDTO getMoviesPageAPI(@PathVariable String query, @PathVariable int page){
+        String url = URLConstants.URL_SEARCH_MOVIES + "&page=" + page + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("movies/adult/{query}/{includeAdult}")
-    public SearchAPI getMoviesIncludeAdultAPI(@PathVariable String query, @PathVariable boolean includeAdult){
-        SearchAPI result = SearchAPIHelper.searchMoviesIncludeAdultAPI(query, includeAdult);
-        return result;
+    public SearchDTO getMoviesIncludeAdultAPI(@PathVariable String query, @PathVariable boolean includeAdult){
+        String url = URLConstants.URL_SEARCH_MOVIES + "&include_adult=" + includeAdult + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("movies/region/{query}/{region}")
-    public SearchAPI getMoviesRegionAPI(@PathVariable String query, @PathVariable String region){
-        SearchAPI result = SearchAPIHelper.searchMoviesRegionAPI(query, region);
-        return result;
+    public SearchDTO getMoviesRegionAPI(@PathVariable String query, @PathVariable String region){
+        String url = URLConstants.URL_SEARCH_MOVIES + "&region=" + region + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("movies/year/{query}/{year}")
-    public SearchAPI getMoviesYearAPI(@PathVariable String query, @PathVariable int year){
-        SearchAPI result = SearchAPIHelper.searchMoviesYearAPI(query, year);
-        return result;
+    public SearchDTO getMoviesYearAPI(@PathVariable String query, @PathVariable int year){
+        String url = URLConstants.URL_SEARCH_MOVIES + "&year=" + year + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("movies/release/{query}/{releaseYear}")
-    public SearchAPI getMoviesReleaseYearAPI(@PathVariable String query, @PathVariable int releaseYear){
-        SearchAPI result = SearchAPIHelper.searchMoviesReleaseYearAPI(query, releaseYear);
-        return result;
+    public SearchDTO getMoviesReleaseYearAPI(@PathVariable String query, @PathVariable int releaseYear){
+        String url = URLConstants.URL_SEARCH_MOVIES + "&primary_release_year=" + releaseYear + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("persons/query/{query}")
-    public SearchAPI getPersonsAPI(@PathVariable String query){
-        SearchAPI result = SearchAPIHelper.searchPersonsAPI(query);
-        return result;
+    public SearchDTO getPersonsAPI(@PathVariable String query){
+        String url = URLConstants.URL_SEARCH_PERSONS + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("persons/language/{query}/{language}")
-    public SearchAPI getPersonsLanguageAPI(@PathVariable String query, @PathVariable String language){
-        SearchAPI result = SearchAPIHelper.searchPersonsLanguageAPI(query, language);
-        return result;
+    public SearchDTO getPersonsLanguageAPI(@PathVariable String query, @PathVariable String language){
+        String url = URLConstants.URL_SEARCH_PERSONS + "&language=" + language + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("persons/page/{query}/{page}")
-    public SearchAPI getPersonsAPI(@PathVariable String query, @PathVariable int page){
-        SearchAPI result = SearchAPIHelper.searchPersonsPageAPI(query, page);
-        return result;
+    public SearchDTO getPersonsAPI(@PathVariable String query, @PathVariable int page){
+        String url = URLConstants.URL_SEARCH_PERSONS + "&page=" + page +"&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
     @GetMapping("persons/adult/{query}/{includeAdult}")
-    public SearchAPI getPersonsAPI(@PathVariable String query, @PathVariable boolean includeAdult){
-        SearchAPI result = SearchAPIHelper.searchPersonsIncludeAdultAPI(query, includeAdult);
-        return result;
+    public SearchDTO getPersonsAPI(@PathVariable String query, @PathVariable boolean includeAdult){
+        String url = URLConstants.URL_SEARCH_PERSONS + "&include_adult=" + includeAdult + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
     @GetMapping("persons/region/{query}/{region}")
-    public SearchAPI getPersonsAPI(@PathVariable String query, @PathVariable String region){
-        SearchAPI result = SearchAPIHelper.searchPersonsRegionAPI(query, region);
-        return result;
+    public SearchDTO getPersonsAPI(@PathVariable String query, @PathVariable String region){
+        String url = URLConstants.URL_SEARCH_PERSONS + "&region=" + region + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("companies/query/{query}")
-    public SearchAPI getCompaniesAPI(@PathVariable String query){
-        SearchAPI result = SearchAPIHelper.searchCompaniesAPI(query);
-        return result;
+    public SearchDTO getCompaniesAPI(@PathVariable String query){
+        String url = URLConstants.URL_SEARCH_COMPANIES + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     @GetMapping("companies/page/{query}/{region}")
-    public SearchAPI getCompaniesPageAPI(@PathVariable String query, @PathVariable int page){
-        SearchAPI result = SearchAPIHelper.searchCompaniesPageAPI(query, page);
-        return result;
+    public SearchDTO getCompaniesPageAPI(@PathVariable String query, @PathVariable int page){
+        String url = URLConstants.URL_SEARCH_COMPANIES + "&page" + page + "&query=" + query;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, SearchDTO.class);
     }
 
     //TODO move the following methods to other class...
     @GetMapping("credits/{movie_id}")
-    public CreditAPI getCreditsAPI(@PathVariable String movie_id){
-        CreditAPI result = SearchAPIHelper.searchCreditsAPI(movie_id);
-        return result;
+    public CreditDTO getCreditsAPI(@PathVariable String movie_id){
+        String url = URLConstants.URL_SEARCH_CREDIT_1 + movie_id + URLConstants.URL_SEARCH_CREDIT_2;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, CreditDTO.class);
     }
 
     @GetMapping("movie/{movie_id}")
-    public MovieAPI getMovieAPI(@PathVariable String movie_id){
-        MovieAPI result = SearchAPIHelper.searchMovieAPI(movie_id);
-        return result;
+    public MovieDTO getMovieAPI(@PathVariable String movie_id){
+        String url = URLConstants.URL_SEARCH_MOVIE_1 + movie_id + URLConstants.URL_SEARCH_MOVIE_2;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, MovieDTO.class);
     }
 
     @GetMapping("person/{person_id}")
-    public PersonAPI getPersonAPI(@PathVariable String person_id){
-        PersonAPI result = SearchAPIHelper.searchPersonAPI(person_id);
-        return result;
+    public PersonDTO getPersonAPI(@PathVariable String person_id){
+        RestTemplate restTemplate = new RestTemplate();
+        String url =  URLConstants.URL_SEARCH_PERSON_1 + person_id + URLConstants.URL_SEARCH_PERSON_2;
+        return restTemplate.getForObject(url, PersonDTO.class);
     }
 
 }
