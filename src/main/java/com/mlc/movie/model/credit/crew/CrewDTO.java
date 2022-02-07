@@ -7,9 +7,17 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CrewDTO {
-    private String id;
+    private Long id;
     private String department;
     private String job;
     private String name;
+
+    public static Crew setCrewFromCrewDTO(CrewDTO crewDTO){
+        Crew crew = new Crew();
+        crew.setDepartment(crewDTO.getDepartment());
+        crew.setJob(crewDTO.getJob());
+        crew.setName(crewDTO.getName());
+        return crew;
+    }
 
 }

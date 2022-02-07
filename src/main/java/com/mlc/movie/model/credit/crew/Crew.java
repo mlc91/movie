@@ -35,12 +35,4 @@ public class Crew {
         return dto;
     }
 
-    public static Crew setCrewFromCrewDTO(CrewDTO crewDTO){
-        Crew crew = new Crew();
-        crew.setDepartment(crewDTO.getDepartment());
-        crew.setJob(crewDTO.getJob());
-        crew.setName(crewDTO.getName());
-        return crew;
-    }
-
 }

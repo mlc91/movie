@@ -20,7 +20,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private String tmdbId;
+    private Long tmdbId;
     private boolean isAdult;
     private String backdropPath;
     private int budget;
@@ -55,34 +55,4 @@ public class Movie {
         return dto;
     }
 
-    //Lombok doesn't generate this getter
-    private boolean getIsAdult() {
-        return this.isAdult;
-    }
-
-    public static Movie setMovieFromMovieDTO(MovieDTO movieDTO){
-        Movie movie = new Movie();
-        movie.setTmdbId(movieDTO.getTmdbId());
-        movie.setAdult(movieDTO.isAdult());
-        movie.setBackdropPath(movieDTO.getBackdropPath());
-        movie.setBudget(movieDTO.getBudget());
-        // TODO: buscar dónde hacer la llamada a la api
-        movie.setCredit(Credit.setCreditFromCreditDTO(getCreditFromAPI(movie.getTmdbId())));
-        //movie.setGenres(movieDTO.getGenres());
-        movie.setHomepage(movieDTO.getHomepage());
-        movie.setOriginalLanguage(movieDTO.getOriginalLanguage());
-        movie.setOriginalTitle(movieDTO.getOriginalTitle());
-        movie.setOverview(movieDTO.getOverview());
-        movie.setPopularity(movieDTO.getPopularity());
-        movie.setPosterPath(movieDTO.getPosterPath());
-//        movie.setProductionCompanies(movieDTO.getProductionCompanies());
-//        movie.setProductionCountries(movieDTO.getProductionCountries());
-        movie.setReleaseDate(movieDTO.getReleaseDate());
-        movie.setRevenue(movieDTO.getRevenue());
-        movie.setStatus(movieDTO.getStatus());
-        movie.setTitle(movieDTO.getTitle());
-        movie.setVoteAverage(movieDTO.getVoteAverage());
-        movie.setVoteCount(movieDTO.getVoteCount());
-        return movie;
-    }
 }

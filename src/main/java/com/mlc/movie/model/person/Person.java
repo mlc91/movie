@@ -16,7 +16,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private String tmdbId;
+    private Long tmdbId;
     @Lob
     private String biography;
     private String birthday;
@@ -35,22 +35,6 @@ public class Person {
         dto.put("name", this.getName());
         dto.put("profilePath", this.getProfilePath());
         return dto;
-    }
-
-    public static Person setPersonFromPersonDTO(PersonDTO personDTO){
-        Person person = new Person();
-        person.setTmdbId(personDTO.getTmdbId());
-        person.setBiography(personDTO.getBiography());
-        person.setBirthday(personDTO.getBirthday());
-        person.setDeathday(personDTO.getDeathday());
-        person.setGender(personDTO.getGender());
-        person.setImdbId(personDTO.getImdbId());
-        person.setKnownForDepartment(personDTO.getKnownForDepartment());
-        person.setName(personDTO.getName());
-        person.setPlaceOfBirth(personDTO.getPlaceOfBirth());
-        person.setPopularity(personDTO.getPopularity());
-        person.setProfilePath(personDTO.getProfilePath());
-        return person;
     }
 
 }

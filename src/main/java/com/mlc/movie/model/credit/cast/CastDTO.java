@@ -7,9 +7,16 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CastDTO {
-    private String id;
+    private Long id;
     private String character;
     private String name;
     private int order;
 
+    public static Cast setCastFromCastDTO(CastDTO castDTO){
+        Cast cast = new Cast();
+        cast.setCharacter(castDTO.getCharacter());
+        cast.setName(castDTO.getName());
+        cast.setCastOrder(castDTO.getOrder());
+        return cast;
+    }
 }

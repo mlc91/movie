@@ -11,11 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.mlc.movie.model.genre.Genre.setGenreFromGenreDTO;
-import static com.mlc.movie.model.genre.Genre.setGenresFromGenreListDTO;
+import static com.mlc.movie.model.genre.GenreListDTO.setGenresFromGenreListDTO;
 import static com.mlc.movie.searchHelper.SearchHelper.getGenresFromAPI;
 
 @SpringBootApplication

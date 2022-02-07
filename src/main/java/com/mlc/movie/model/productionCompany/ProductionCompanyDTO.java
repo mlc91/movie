@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
 public class ProductionCompanyDTO {
-    private String id;
+    private Long id;
     @JsonProperty("logo_path")
     private String logoPath;
     private String name;

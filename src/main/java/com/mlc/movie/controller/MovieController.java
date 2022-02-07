@@ -12,14 +12,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.mlc.movie.controller.Util.makeMap;
-import static com.mlc.movie.model.movie.Movie.setMovieFromMovieDTO;
-import static com.mlc.movie.model.person.Person.setPersonFromPersonDTO;
+import static com.mlc.movie.model.movie.MovieDTO.setMovieFromMovieDTO;
+import static com.mlc.movie.model.person.PersonDTO.setPersonFromPersonDTO;
 
 @RestController
 @RequestMapping("/api")
@@ -32,7 +33,7 @@ public class MovieController {
     PersonRepository personRepository;
 
     @RequestMapping(path = "/movie/{movieId}", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, Object>> addMovie(@PathVariable String movieId){
+    public ResponseEntity<Map<String, Object>> addMovie(@PathVariable Long movieId){
         MovieDTO movieDTO = SearchHelper.getMovieFromAPI(movieId);
         Movie movie = setMovieFromMovieDTO(movieDTO);
 
@@ -45,7 +46,7 @@ public class MovieController {
     }
 
     @RequestMapping(path = "/person/{personId}", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, Object>> addPerson(@PathVariable String personId){
+    public ResponseEntity<Map<String, Object>> addPerson(@PathVariable Long personId){
         PersonDTO personDTO = SearchHelper.getPersonFromAPI(personId);
         Person person = setPersonFromPersonDTO(personDTO);
 
@@ -57,15 +58,31 @@ public class MovieController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //TODO: HACER BIEN GET PERSONS Y GET MOVIES
     @GetMapping("/persons")
-    private List<Object> getPersons(){
-        return personRepository.findAll().stream().map(person -> person.personDTO()).collect(Collectors.toList());
+    private Map<String, Object> getPersons(){
+        Map<String, Object> dto = new LinkedHashMap<>();
+        dto.put("persons", personRepository.findAll().stream().map(person -> person.personDTO()).collect(Collectors.toList()));
+        return dto;
     }
-    
 
     @GetMapping("/movies")
-    private List<Object> getMovies(){
-        return movieRepository.findAll().stream().map(movie -> movie.movieDTO()).collect(Collectors.toList());
+    private Map<String, Object> getMovies(){
+        Map<String, Object> dto = new LinkedHashMap<>();
+        dto.put("movies", movieRepository.findAll().stream().map(movie -> movie.movieDTO()).collect(Collectors.toList()));
+        return dto;
+    }
+
+    @RequestMapping(path = "movie/delete/{movieId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> deleteMovie(@PathVariable Long movieId) {
+        movieRepository.deleteById(movieId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(path = "person/delete/{personId}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> deletePerson(@PathVariable Long personId) {
+        personRepository.deleteById(personId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.mlc.movie.model.credit.cast.Cast.setCastFromCastDTO;
-import static com.mlc.movie.model.credit.crew.Crew.setCrewFromCrewDTO;
+import static com.mlc.movie.model.credit.cast.CastDTO.setCastFromCastDTO;
+import static com.mlc.movie.model.credit.crew.CrewDTO.setCrewFromCrewDTO;
 
 @Data
 @Entity
@@ -43,10 +43,4 @@ public class Credit {
         return dto;
     }
 
-    public static Credit setCreditFromCreditDTO(CreditDTO creditDTO) {
-        Credit credit = new Credit();
-        credit.setCasts(creditDTO.getCasts().stream().map(castDTO -> setCastFromCastDTO(castDTO)).collect(Collectors.toList()));
-        credit.setCrews(creditDTO.getCrews().stream().map(crewDTO -> setCrewFromCrewDTO(crewDTO)).collect(Collectors.toList()));
-        return credit;
-    }
 }

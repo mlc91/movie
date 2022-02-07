@@ -2,7 +2,6 @@ package com.mlc.movie.controller;
 
 import com.mlc.movie.URLConstants;
 import com.mlc.movie.model.credit.CreditDTO;
-import com.mlc.movie.model.genre.GenreListDTO;
 import com.mlc.movie.model.movie.MovieDTO;
 import com.mlc.movie.model.person.PersonDTO;
 import com.mlc.movie.model.search.SearchDTO;
@@ -17,6 +16,7 @@ public class SearchController {
 
     @GetMapping("movies/query/{query}")
     public SearchDTO getMoviesAPI(@PathVariable String query){
+
         String url = URLConstants.URL_SEARCH_MOVIES + "&query=" + query;
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(url, SearchDTO.class);
@@ -113,23 +113,14 @@ public class SearchController {
 
     //TODO move the following methods to other class...
 
-    // TODO tomar el método anterior y pegarlo en este para poder obtener los credits
     @GetMapping("movie/{movieId}")
-    public MovieDTO getMovieAPI(@PathVariable String movieId){
+    public MovieDTO getMovieAPI(@PathVariable Long movieId){
         return getMovieFromAPI(movieId);
     }
 
     @GetMapping("person/{personId}")
-    public PersonDTO getPersonAPI(@PathVariable String personId){
+    public PersonDTO getPersonAPI(@PathVariable Long personId){
         return getPersonFromAPI(personId);
     }
 
-    //TODO: Quitar el following método
-
-    @GetMapping("credit/{movieId}")
-    public CreditDTO getCreditAPI(@PathVariable String movieId){
-        return getCreditFromAPI(movieId);
-    }
-
 }
-//TODO: CAMBIAR LOS ID STRING TO INT

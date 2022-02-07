@@ -3,24 +3,20 @@ package com.mlc.movie.model.movie;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mlc.movie.model.credit.Credit;
-import com.mlc.movie.model.genre.Genre;
+import com.mlc.movie.model.credit.CreditDTO;
 import com.mlc.movie.model.genre.GenreDTO;
-import com.mlc.movie.model.person.Person;
-import com.mlc.movie.model.person.PersonDTO;
-import com.mlc.movie.model.productionCompany.ProductionCompany;
-import com.mlc.movie.model.productionCompany.ProductionCompanyDTO;
-import com.mlc.movie.model.productionCountry.ProductionCountry;
-import com.mlc.movie.model.productionCountry.ProductionCountryDTO;
 import lombok.Data;
 
 import java.util.List;
+
+import static com.mlc.movie.searchHelper.SearchHelper.getCreditFromAPI;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
 public class MovieDTO {
     @JsonProperty("id")
-    private String tmdbId;
-    private boolean adult;
+    private Long tmdbId;
+    private boolean isAdult;
     @JsonProperty("backdrop_path")
     private String backdropPath;
     private int budget;
@@ -47,5 +43,31 @@ public class MovieDTO {
     private Float voteAverage;
     @JsonProperty("vote_count")
     private int voteCount;
+
+    public static Movie setMovieFromMovieDTO(MovieDTO movieDTO){
+        Movie movie = new Movie();
+        movie.setTmdbId(movieDTO.getTmdbId());
+        movie.setAdult(movieDTO.isAdult());
+        movie.setBackdropPath(movieDTO.getBackdropPath());
+        movie.setBudget(movieDTO.getBudget());
+        // TODO: buscar dónde hacer la llamada a la api
+        movie.setCredit(CreditDTO.setCreditFromCreditDTO(getCreditFromAPI(movie.getTmdbId())));
+        //movie.setGenres(movieDTO.getGenres());
+        movie.setHomepage(movieDTO.getHomepage());
+        movie.setOriginalLanguage(movieDTO.getOriginalLanguage());
+        movie.setOriginalTitle(movieDTO.getOriginalTitle());
+        movie.setOverview(movieDTO.getOverview());
+        movie.setPopularity(movieDTO.getPopularity());
+        movie.setPosterPath(movieDTO.getPosterPath());
+//        movie.setProductionCompanies(movieDTO.getProductionCompanies());
+//        movie.setProductionCountries(movieDTO.getProductionCountries());
+        movie.setReleaseDate(movieDTO.getReleaseDate());
+        movie.setRevenue(movieDTO.getRevenue());
+        movie.setStatus(movieDTO.getStatus());
+        movie.setTitle(movieDTO.getTitle());
+        movie.setVoteAverage(movieDTO.getVoteAverage());
+        movie.setVoteCount(movieDTO.getVoteCount());
+        return movie;
+    }
 
 }

@@ -33,12 +33,4 @@ public class Cast {
         dto.put("order", this.getCastOrder());
         return dto;
     }
-
-    public static Cast setCastFromCastDTO(CastDTO castDTO){
-        Cast cast = new Cast();
-        cast.setCharacter(castDTO.getCharacter());
-        cast.setName(castDTO.getName());
-        cast.setCastOrder(castDTO.getOrder());
-        return cast;
-    }
 }

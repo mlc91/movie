@@ -12,7 +12,14 @@ import javax.persistence.*;
 @JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
 public class GenreDTO {
     @JsonProperty("id")
-    private int tmdbId;
+    private Long tmdbId;
     private String name;
+
+    public static Genre setGenreFromGenreDTO(GenreDTO genreDTO){
+        Genre genre = new Genre();
+        genre.setTmdbId(genreDTO.getTmdbId());
+        genre.setName(genreDTO.getName());
+        return genre;
+    }
 
 }

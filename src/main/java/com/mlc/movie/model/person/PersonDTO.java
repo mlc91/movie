@@ -8,7 +8,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
 public class PersonDTO {
     @JsonProperty("id")
-    private String tmdbId;
+    private Long tmdbId;
     private String biography;
     private String birthday;
     private String deathday;
@@ -23,5 +23,21 @@ public class PersonDTO {
     private Float popularity;
     @JsonProperty("profile_path")
     private String profilePath;
+
+    public static Person setPersonFromPersonDTO(PersonDTO personDTO){
+        Person person = new Person();
+        person.setTmdbId(personDTO.getTmdbId());
+        person.setBiography(personDTO.getBiography());
+        person.setBirthday(personDTO.getBirthday());
+        person.setDeathday(personDTO.getDeathday());
+        person.setGender(personDTO.getGender());
+        person.setImdbId(personDTO.getImdbId());
+        person.setKnownForDepartment(personDTO.getKnownForDepartment());
+        person.setName(personDTO.getName());
+        person.setPlaceOfBirth(personDTO.getPlaceOfBirth());
+        person.setPopularity(personDTO.getPopularity());
+        person.setProfilePath(personDTO.getProfilePath());
+        return person;
+    }
 
 }
