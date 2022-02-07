@@ -5,6 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Data
 @Entity
@@ -23,6 +25,15 @@ public class Crew {
     private String department;
     private String job;
     private String name;
+
+    public Map<String, Object> crewDTO() {
+        Map<String, Object> dto = new LinkedHashMap<>();
+        dto.put("id", this.getId());
+        dto.put("department", this.getDepartment());
+        dto.put("job", this.getJob());
+        dto.put("name", this.getName());
+        return dto;
+    }
 
     public static Crew setCrewFromCrewDTO(CrewDTO crewDTO){
         Crew crew = new Crew();

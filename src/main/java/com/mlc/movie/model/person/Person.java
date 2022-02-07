@@ -32,16 +32,7 @@ public class Person {
     public Map<String, Object> personDTO(){
         Map<String, Object> dto =new LinkedHashMap<>();
         dto.put("id", this.getId());
-        dto.put("tmdbId", this.getTmdbId());
-        dto.put("biography", this.getBiography());
-        dto.put("birthday", this.getBirthday());
-        dto.put("deathday", this.getDeathday());
-        dto.put("gender", this.getGender());
-        dto.put("imdbId", this.getImdbId());
-        dto.put("knownForDepartment", this.getKnownForDepartment());
         dto.put("name", this.getName());
-        dto.put("placeOfBirth", this.getPlaceOfBirth());
-        dto.put("popularity", this.getPopularity());
         dto.put("profilePath", this.getProfilePath());
         return dto;
     }

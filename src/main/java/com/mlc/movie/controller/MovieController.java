@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.mlc.movie.controller.Util.makeMap;
@@ -56,13 +57,15 @@ public class MovieController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    //TODO: HACER BIEN GET PERSONS Y GET MOVIES
     @GetMapping("/persons")
     private List<Object> getPersons(){
         return personRepository.findAll().stream().map(person -> person.personDTO()).collect(Collectors.toList());
     }
+    
 
     @GetMapping("/movies")
     private List<Object> getMovies(){
-        return movieRepository.findAll().stream().map(movie -> movie.mo )
+        return movieRepository.findAll().stream().map(movie -> movie.movieDTO()).collect(Collectors.toList());
     }
 }

@@ -7,7 +7,9 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.mlc.movie.model.credit.cast.Cast.setCastFromCastDTO;
@@ -31,6 +33,15 @@ public class Credit {
 
     @OneToOne(mappedBy = "credit")
     private Movie movie;
+
+    public Map<String, Object> creditDTO() {
+        Map<String, Object> dto = new LinkedHashMap<>();
+        dto.put("id", this.getId());
+        dto.put("casts", this.getCasts().stream().map(cast -> cast.castDTO()).collect(Collectors.toList()));
+        dto.put("crews", this.getCrews().stream().map(crew -> crew.crewDTO()).collect(Collectors.toList()));
+        dto.put("movie", this.getMovie().movieDTO());
+        return dto;
+    }
 
     public static Credit setCreditFromCreditDTO(CreditDTO creditDTO) {
         Credit credit = new Credit();

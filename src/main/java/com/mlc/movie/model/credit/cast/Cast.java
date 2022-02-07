@@ -5,6 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Data
 @Entity
@@ -23,6 +25,14 @@ public class Cast {
     private Credit credit;
 
     private String name;
+
+    public Map<String, Object> castDTO() {
+        Map<String, Object> dto = new LinkedHashMap<>();
+        dto.put("id", this.getId());
+        dto.put("character", this.getCharacter());
+        dto.put("order", this.getCastOrder());
+        return dto;
+    }
 
     public static Cast setCastFromCastDTO(CastDTO castDTO){
         Cast cast = new Cast();
