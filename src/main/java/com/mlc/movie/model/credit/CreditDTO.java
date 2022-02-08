@@ -22,7 +22,7 @@ public class CreditDTO {
     public static Credit setCreditFromCreditDTO(CreditDTO creditDTO) {
         Credit credit = new Credit();
         credit.setCast(creditDTO.getCasts().stream().map(CastDTO::setCastFromCastDTO).collect(Collectors.toList()));
-        credit.setCrews(creditDTO.getCrews().stream().map(CrewDTO::setCrewFromCrewDTO).collect(Collectors.toList()));
+        credit.setCrew(creditDTO.getCrews().stream().map(CrewDTO::setCrewFromCrewDTO).collect(Collectors.toList()));
         return credit;
     }
 

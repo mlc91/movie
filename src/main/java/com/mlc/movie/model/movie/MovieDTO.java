@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mlc.movie.model.credit.Credit;
 import com.mlc.movie.model.credit.CreditDTO;
+import com.mlc.movie.model.credit.cast.CastDTO;
 import com.mlc.movie.model.genre.GenreDTO;
+import com.mlc.movie.model.productionCompany.ProductionCompanyDTO;
 import lombok.Data;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.mlc.movie.searchHelper.SearchHelper.getCreditFromAPI;
 
@@ -51,15 +54,17 @@ public class MovieDTO {
         movie.setBackdropPath(movieDTO.getBackdropPath());
         movie.setBudget(movieDTO.getBudget());
         // TODO: buscar dónde hacer la llamada a la api
+        // podría enviarse la info cuando se hace getMovieFromAPI --> probar
         movie.setCredit(CreditDTO.setCreditFromCreditDTO(getCreditFromAPI(movie.getTmdbId())));
-        //movie.setGenres(movieDTO.getGenres());
+        movie.setGenres(movieDTO.getGenres().stream().map(GenreDTO::setGenreFromGenreDTO).collect(Collectors.toList()));
         movie.setHomepage(movieDTO.getHomepage());
         movie.setOriginalLanguage(movieDTO.getOriginalLanguage());
         movie.setOriginalTitle(movieDTO.getOriginalTitle());
         movie.setOverview(movieDTO.getOverview());
         movie.setPopularity(movieDTO.getPopularity());
         movie.setPosterPath(movieDTO.getPosterPath());
-//        movie.setProductionCompanies(movieDTO.getProductionCompanies());
+//        movie.setProductionCompanies(movieDTO.getProductionCompanies()
+//                .stream().map(ProductionCompanyDTO::setPCompanyFromPCompanyDTO).collect(Collectors.toList()));
 //        movie.setProductionCountries(movieDTO.getProductionCountries());
         movie.setReleaseDate(movieDTO.getReleaseDate());
         movie.setRevenue(movieDTO.getRevenue());

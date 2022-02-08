@@ -31,9 +31,9 @@ public class Cast {
     public Map<String, Object> castDTO() {
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
-        //dto.put("credit", this.getCredit());
         dto.put("character", this.getCharacter());
         dto.put("order", this.getCastOrder());
+        dto.put("name", this.getName());
         return dto;
     }
 }

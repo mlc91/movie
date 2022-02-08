@@ -18,8 +18,7 @@ public class Crew {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CREDIT_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Credit credit;
     private String department;
     private String job;

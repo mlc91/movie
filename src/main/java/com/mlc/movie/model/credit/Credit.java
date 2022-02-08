@@ -23,16 +23,17 @@ public class Credit {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "cast_id")
     private List<Cast> cast;
-    @OneToMany(mappedBy = "credit", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Crew> crews;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "crew_id")
+    private List<Crew> crew;
     @OneToOne(mappedBy = "credit")
     private Movie movie;
 
     public Map<String, Object> creditDTO() {
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
-        dto.put("casts", this.getCast().stream().map(cast -> cast.castDTO()).collect(Collectors.toList()));
-        dto.put("crews", this.getCrews().stream().map(crew -> crew.crewDTO()).collect(Collectors.toList()));
+        dto.put("cast", this.getCast().stream().map(cast -> cast.castDTO()).collect(Collectors.toList()));
+        dto.put("crew", this.getCrew().stream().map(crew -> crew.crewDTO()).collect(Collectors.toList()));
         return dto;
     }
 

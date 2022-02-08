@@ -25,8 +25,8 @@ public class MovieApplication {
 	public CommandLineRunner initData(GenreRepository genreRepository) {
 		return (args) -> {
 			// TO PERSIST THE GENRE LIST FROM API
-			GenreListDTO genreListDTO = getGenresFromAPI();
-			genreRepository.saveAll(setGenresFromGenreListDTO(genreListDTO));
+//			GenreListDTO genreListDTO = getGenresFromAPI();
+//			genreRepository.saveAll(setGenresFromGenreListDTO(genreListDTO));
 		};
 	}
 }

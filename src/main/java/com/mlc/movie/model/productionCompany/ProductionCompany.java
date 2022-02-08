@@ -6,6 +6,9 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -18,6 +21,15 @@ public class ProductionCompany {
     private String logoPath;
     private String name;
     private String originCountry;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Movie movie;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Movie movie;
+
+    public Map<String, Object> productionCompanyDTO() {
+        Map<String, Object> dto = new LinkedHashMap<>();
+        dto.put("id", this.getId());
+        dto.put("logoPath", this.getLogoPath());
+        dto.put("name", this.getName());
+        dto.put("originCountry", this.getOriginCountry());
+        return dto;
+    }
 }

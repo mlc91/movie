@@ -74,7 +74,7 @@ public class MovieController {
     private Map<String, Object> getMovies(){
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("movies", movieRepository.findAll().stream().map(movie -> movie.movieDTO()).collect(Collectors.toList()));
-        dto.put("credit", creditRepository.findAll().stream().map(credit -> credit.creditDTO()).collect(Collectors.toList()));
+        //dto.put("credit", creditRepository.findAll().stream().map(credit -> credit.creditDTO()).collect(Collectors.toList()));
         return dto;
     }
 
