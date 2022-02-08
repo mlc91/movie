@@ -4,7 +4,6 @@ import com.mlc.movie.model.credit.cast.Cast;
 import com.mlc.movie.model.credit.crew.Crew;
 import com.mlc.movie.model.movie.Movie;
 import lombok.Data;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -21,8 +20,9 @@ public class Credit {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    @OneToMany(mappedBy = "credit", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cast> casts;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cast_id")
+    private List<Cast> cast;
     @OneToMany(mappedBy = "credit", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Crew> crews;
     @OneToOne(mappedBy = "credit")
@@ -31,7 +31,7 @@ public class Credit {
     public Map<String, Object> creditDTO() {
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
-        dto.put("casts", this.getCasts().stream().map(cast -> cast.castDTO()).collect(Collectors.toList()));
+        dto.put("casts", this.getCast().stream().map(cast -> cast.castDTO()).collect(Collectors.toList()));
         dto.put("crews", this.getCrews().stream().map(crew -> crew.crewDTO()).collect(Collectors.toList()));
         return dto;
     }
