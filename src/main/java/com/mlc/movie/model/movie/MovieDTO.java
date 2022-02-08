@@ -46,6 +46,8 @@ public class MovieDTO {
     private Float voteAverage;
     @JsonProperty("vote_count")
     private int voteCount;
+    // Not retrieve from the "movie JSON"
+    private CreditDTO creditDTO;
 
     public static Movie setMovieFromMovieDTO(MovieDTO movieDTO){
         Movie movie = new Movie();
@@ -53,9 +55,7 @@ public class MovieDTO {
         movie.setAdult(movieDTO.isAdult());
         movie.setBackdropPath(movieDTO.getBackdropPath());
         movie.setBudget(movieDTO.getBudget());
-        // TODO: buscar dónde hacer la llamada a la api
-        // podría enviarse la info cuando se hace getMovieFromAPI --> probar
-        movie.setCredit(CreditDTO.setCreditFromCreditDTO(getCreditFromAPI(movie.getTmdbId())));
+        movie.setCredit(CreditDTO.setCreditFromCreditDTO(movieDTO.getCreditDTO()));
         movie.setGenres(movieDTO.getGenres().stream().map(GenreDTO::setGenreFromGenreDTO).collect(Collectors.toList()));
         movie.setHomepage(movieDTO.getHomepage());
         movie.setOriginalLanguage(movieDTO.getOriginalLanguage());

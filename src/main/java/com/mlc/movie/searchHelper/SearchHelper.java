@@ -20,7 +20,10 @@ public class SearchHelper {
     public static MovieDTO getMovieFromAPI(Long movieId){
         String url = urlBuilderWithId(movieId, URLConstants.URL_SEARCH_MOVIE);
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, MovieDTO.class);
+        MovieDTO movieDTO = restTemplate.getForObject(url, MovieDTO.class);
+        CreditDTO creditDTO = getCreditFromAPI(movieId);
+        movieDTO.setCreditDTO(creditDTO);
+        return movieDTO;
     }
 
     public static CreditDTO getCreditFromAPI(Long movieId){

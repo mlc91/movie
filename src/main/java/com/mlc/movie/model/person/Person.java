@@ -2,6 +2,7 @@ package com.mlc.movie.model.person;
 
 import com.mlc.movie.model.credit.cast.Cast;
 import com.mlc.movie.model.credit.crew.Crew;
+import com.mlc.movie.model.gender.Gender;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -34,9 +35,12 @@ public class Person {
     public Map<String, Object> personDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
+        dto.put("gender", Gender.fromInteger(this.getGender()));
         dto.put("name", this.getName());
         dto.put("profilePath", this.getProfilePath());
         return dto;
     }
 
 }
+
+//TODO: TERMINAR DE POPULAR LOS DTOS DE TODAS LAS ENTIDADES
