@@ -17,7 +17,8 @@ import static com.mlc.movie.model.credit.crew.CrewDTO.setCrewFromCrewDTO;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreditDTO {
-    private Long id;
+    @JsonProperty("id")
+    private Long tmdbId;
     @JsonProperty("cast")
     private List<CastDTO> casts;
     @JsonProperty("crew")
@@ -25,8 +26,8 @@ public class CreditDTO {
 
     public static Credit setCreditFromCreditDTO(CreditDTO creditDTO) {
         Credit credit = new Credit();
-        credit.setCasts(creditDTO.getCasts().stream().map(castDTO -> setCastFromCastDTO(castDTO)).collect(Collectors.toList()));
-        credit.setCrews(creditDTO.getCrews().stream().map(crewDTO -> setCrewFromCrewDTO(crewDTO)).collect(Collectors.toList()));
+        credit.setCasts(creditDTO.getCasts().stream().map(CastDTO::setCastFromCastDTO).collect(Collectors.toList()));
+        credit.setCrews(creditDTO.getCrews().stream().map(CrewDTO::setCrewFromCrewDTO).collect(Collectors.toList()));
         return credit;
     }
 

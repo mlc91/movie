@@ -1,6 +1,7 @@
 package com.mlc.movie.model.credit.crew;
 
 import com.mlc.movie.model.credit.Credit;
+import com.mlc.movie.model.person.Person;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -17,11 +18,9 @@ public class Crew {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "credit_id")
+    @JoinColumn(name = "CREDIT_ID")
     private Credit credit;
-
     private String department;
     private String job;
     private String name;

@@ -1,5 +1,7 @@
 package com.mlc.movie.model.person;
 
+import com.mlc.movie.model.credit.cast.Cast;
+import com.mlc.movie.model.credit.crew.Crew;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,7 +32,7 @@ public class Person {
     private String profilePath;
     
     public Map<String, Object> personDTO(){
-        Map<String, Object> dto =new LinkedHashMap<>();
+        Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
         dto.put("name", this.getName());
         dto.put("profilePath", this.getProfilePath());

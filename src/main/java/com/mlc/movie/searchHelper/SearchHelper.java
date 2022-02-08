@@ -8,6 +8,7 @@ import com.mlc.movie.model.person.PersonDTO;
 import org.springframework.web.client.RestTemplate;
 
 import static com.mlc.movie.URLConstants.*;
+import static com.mlc.movie.util.URLHelper.*;
 
 public class SearchHelper {
     public static PersonDTO getPersonFromAPI(Long personId){
@@ -23,7 +24,7 @@ public class SearchHelper {
     }
 
     public static CreditDTO getCreditFromAPI(Long movieId){
-        String url = urlBuilderParameters(movieId, URLConstants.URL_SEARCH_MOVIE, URL_SEARCH_CREDITS);
+        String url = urlBuilderTwoParamWithId(movieId, URLConstants.URL_SEARCH_MOVIE, URL_SEARCH_CREDITS);
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(url, CreditDTO.class);
     }

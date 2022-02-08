@@ -4,6 +4,8 @@ import com.mlc.movie.model.movie.Movie;
 import com.mlc.movie.model.movie.MovieDTO;
 import com.mlc.movie.model.person.Person;
 import com.mlc.movie.model.person.PersonDTO;
+import com.mlc.movie.repository.CastRepository;
+import com.mlc.movie.repository.CreditRepository;
 import com.mlc.movie.repository.MovieRepository;
 import com.mlc.movie.repository.PersonRepository;
 import com.mlc.movie.searchHelper.SearchHelper;
@@ -31,6 +33,9 @@ public class MovieController {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    CreditRepository creditRepository;
 
     @RequestMapping(path = "/movie/{movieId}", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> addMovie(@PathVariable Long movieId){
@@ -69,6 +74,7 @@ public class MovieController {
     private Map<String, Object> getMovies(){
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("movies", movieRepository.findAll().stream().map(movie -> movie.movieDTO()).collect(Collectors.toList()));
+        dto.put("credit", creditRepository.findAll().stream().map(credit -> credit.creditDTO()).collect(Collectors.toList()));
         return dto;
     }
 
