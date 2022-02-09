@@ -1,11 +1,16 @@
 package com.mlc.movie.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mlc.movie.URLConstants;
 import com.mlc.movie.model.movie.MovieDTO;
 import com.mlc.movie.model.person.PersonDTO;
 import com.mlc.movie.model.search.SearchDTO;
+import com.mlc.movie.repository.MovieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
 import static com.mlc.movie.searchHelper.SearchHelper.*;
 import static com.mlc.movie.util.URLHelper.urlBuilder;
 
@@ -13,12 +18,32 @@ import static com.mlc.movie.util.URLHelper.urlBuilder;
 @RequestMapping("/search")
 public class SearchController {
 
-    @GetMapping("movies/query/{query}")
-    public SearchDTO getMoviesAPI(@PathVariable String query){
+    @Autowired
+    MovieRepository movieRepository;
+
+    @RequestMapping("movies/query/{query}")
+    public ResponseEntity<String> getMoviesAPI(@PathVariable String query) throws JsonProcessingException {
         String url = urlBuilder(URLConstants.URL_SEARCH_MOVIES) + "&query=" + query;
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, SearchDTO.class);
+        return restTemplate.getForEntity(url, String.class);
     }
+
+//    ObjectMapper mapper = new ObjectMapper();
+//    JsonNode root = mapper.readTree(response.getBody());
+//    JsonNode name = root.path("original_title");
+//    Movie movie = new Movie();
+//        movie.setTitle(String.valueOf(name));
+//    Credit credit = new Credit();
+//        movie.setCredit(credit);
+//        movieRepository.save(movie);
+
+//
+//    @GetMapping("movies/query/{query}")
+//    public SearchDTO getMoviesAPI(@PathVariable String query){
+//        String url = urlBuilder(URLConstants.URL_SEARCH_MOVIES) + "&query=" + query;
+//        RestTemplate restTemplate = new RestTemplate();
+//        return restTemplate.getForObject(url, SearchDTO.class);
+//    }
 
     @GetMapping("movies/language/{query}/{language}")
     public SearchDTO getMoviesLanguageAPI(@PathVariable String query, @PathVariable String language){

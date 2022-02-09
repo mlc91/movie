@@ -6,10 +6,16 @@ import com.mlc.movie.model.movie.Movie;
 import com.mlc.movie.repository.GenreRepository;
 import com.mlc.movie.repository.MovieRepository;
 import com.mlc.movie.repository.PersonRepository;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.tool.schema.TargetType;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.EnumSet;
 
 import static com.mlc.movie.model.genre.GenreListDTO.setGenresFromGenreListDTO;
 import static com.mlc.movie.searchHelper.SearchHelper.getGenresFromAPI;

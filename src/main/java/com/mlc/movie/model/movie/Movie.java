@@ -1,26 +1,20 @@
 package com.mlc.movie.model.movie;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mlc.movie.model.credit.Credit;
-import com.mlc.movie.model.credit.cast.Cast;
 import com.mlc.movie.model.credit.crew.Crew;
 import com.mlc.movie.model.genre.Genre;
-import com.mlc.movie.model.person.Person;
-import com.mlc.movie.model.productionCompany.ProductionCompany;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import static com.mlc.movie.searchHelper.SearchHelper.getCreditFromAPI;
 
 @Data
 @Entity
@@ -71,12 +65,18 @@ public class Movie {
         dto.put("director", this.getCredit().getCrew().stream()
                 .filter(crew -> crew.getJob().equals("Director"))
                 .collect(Collectors.toList())
-                .stream().map(crew -> crew.getName()));
-        dto.put("genres", this.getGenres().stream().map(genre -> genre.genreDTO()).collect(Collectors.toList()));
+                .stream().map(Crew::getName));
+        dto.put("genres", this.getGenres().stream().map(Genre::genreDTO).collect(Collectors.toList()));
         dto.put("homepage", this.getHomepage());
         dto.put("originalTitle", this.getOriginalTitle());
         //dto.put("productionCompanies", this.getProductionCompanies().stream().map(pc -> pc.productionCompanyDTO()).collect(Collectors.toList()));
         return dto;
+    }
+
+    public boolean isValid() {
+        return tmdbId != null && backdropPath != null && credit != null
+                && homepage != null && originalLanguage != null && originalTitle != null && overview != null &&
+                popularity != null && posterPath != null && releaseDate != null && status  != null && title != null;
     }
 
 }

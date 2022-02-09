@@ -36,5 +36,4 @@ public class Credit {
         dto.put("crew", this.getCrew().stream().map(crew -> crew.crewDTO()).collect(Collectors.toList()));
         return dto;
     }
-
 }
