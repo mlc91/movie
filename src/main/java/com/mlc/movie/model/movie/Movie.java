@@ -2,12 +2,14 @@ package com.mlc.movie.model.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mlc.movie.model.MovieUser;
 import com.mlc.movie.model.credit.Credit;
 import com.mlc.movie.model.credit.crew.Crew;
 import com.mlc.movie.model.genre.Genre;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
 
@@ -45,6 +47,9 @@ public class Movie {
     private String overview;
     private Float popularity;
     private String posterPath;
+    @ToString.Exclude
+    @OneToOne
+    private MovieUser movieUser;
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "production_company_id")
 //    private List<ProductionCompany> productionCompanies;

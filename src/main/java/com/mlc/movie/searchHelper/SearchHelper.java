@@ -11,11 +11,6 @@ import static com.mlc.movie.URLConstants.*;
 import static com.mlc.movie.util.URLHelper.*;
 
 public class SearchHelper {
-    public static PersonDTO getPersonFromAPI(Long personId){
-        RestTemplate restTemplate = new RestTemplate();
-        String url =  urlBuilderWithId(personId, URLConstants.URL_SEARCH_PERSON);
-        return restTemplate.getForObject(url, PersonDTO.class);
-    }
 
     public static MovieDTO getMovieFromAPI(Long movieId){
         String url = urlBuilderWithId(movieId, URLConstants.URL_SEARCH_MOVIE);

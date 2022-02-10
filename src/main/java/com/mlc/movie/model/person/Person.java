@@ -1,9 +1,11 @@
 package com.mlc.movie.model.person;
 
+import com.mlc.movie.model.MovieUser;
 import com.mlc.movie.model.credit.cast.Cast;
 import com.mlc.movie.model.credit.crew.Crew;
 import com.mlc.movie.model.gender.Gender;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -31,6 +33,9 @@ public class Person {
     private String placeOfBirth;
     private Float popularity;
     private String profilePath;
+    @ToString.Exclude
+    @OneToOne
+    private MovieUser movieUser;
     
     public Map<String, Object> personDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();
@@ -40,7 +45,9 @@ public class Person {
         dto.put("profilePath", this.getProfilePath());
         return dto;
     }
-
+    public boolean isValid(){
+        return biography != null && birthday != null && deathday != null; //continuar
+    }
 }
 
 //TODO: TERMINAR DE POPULAR LOS DTOS DE TODAS LAS ENTIDADES

@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import static com.mlc.movie.model.person.PersonDTO.setPersonFromPersonDTO;
-import static com.mlc.movie.searchHelper.SearchHelper.getPersonFromAPI;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
