@@ -1,8 +1,7 @@
 package com.mlc.movie.model.person;
 
-import com.mlc.movie.model.MovieUser;
-import com.mlc.movie.model.credit.cast.Cast;
-import com.mlc.movie.model.credit.crew.Crew;
+import com.mlc.movie.model.PersonUser;
+import com.mlc.movie.model.Fan;
 import com.mlc.movie.model.gender.Gender;
 import lombok.Data;
 import lombok.ToString;
@@ -11,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Data
 @Entity
@@ -34,8 +34,8 @@ public class Person {
     private Float popularity;
     private String profilePath;
     @ToString.Exclude
-    @OneToOne
-    private MovieUser movieUser;
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    Set<PersonUser> personUsers;
     
     public Map<String, Object> personDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();

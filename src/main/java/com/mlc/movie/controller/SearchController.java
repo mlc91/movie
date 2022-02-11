@@ -6,25 +6,31 @@ import com.mlc.movie.model.credit.CreditDTO;
 import com.mlc.movie.model.movie.MovieDTO;
 import com.mlc.movie.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.awt.print.Pageable;
 
 import static com.mlc.movie.URLConstants.URL_SEARCH_CREDITS;
 import static com.mlc.movie.util.URLHelper.*;
 
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RequestMapping("/api")
 public class SearchController {
 
     @Autowired
     MovieRepository movieRepository;
 
-    @RequestMapping("movies/query/{query}")
-    public ResponseEntity<String> getMoviesAPI(@PathVariable String query) throws JsonProcessingException {
+    @GetMapping("movies/query/{query}")
+    public MovieDTO getMoviesAPI(@PathVariable String query) throws JsonProcessingException {
+        Pageable firstPage = (Pageable) PageRequest.of(0, 10);
         String url = urlBuilder(URLConstants.URL_SEARCH_MOVIES) + "&query=" + query;
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForEntity(url, String.class);
+        MovieDTO movies = restTemplate.getForEntity(url, MovieDTO.class).getBody();
+        return movies;
     }
 
     @RequestMapping("movies/language/{query}/{language}")
@@ -115,20 +121,4 @@ public class SearchController {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForEntity(url, String.class);
     }
-
-    //TODO move the following methods to other class...
-
-    @RequestMapping("search/movie/{movieId}")
-    public ResponseEntity<MovieDTO> getMovieAPI(@PathVariable Long movieId){
-        String urlMovie = urlBuilderWithId(movieId, URLConstants.URL_SEARCH_MOVIE);
-        String urlCredit = urlBuilderTwoParamWithId(movieId, URLConstants.URL_SEARCH_MOVIE, URL_SEARCH_CREDITS);
-        RestTemplate restTemplate1 = new RestTemplate();
-        RestTemplate restTemplate2 = new RestTemplate();
-        ResponseEntity<MovieDTO> responseMovie = restTemplate1.getForEntity(urlMovie, MovieDTO.class);
-        MovieDTO movieDTO = restTemplate1.getForEntity(urlMovie, MovieDTO.class).getBody();
-        CreditDTO creditDTO = restTemplate2.getForEntity(urlCredit, CreditDTO.class).getBody();
-        movieDTO.setCreditDTO(creditDTO);
-        return responseMovie;
-    }
-
 }

@@ -1,6 +1,6 @@
 package com.mlc.movie.model;
 
-import com.mlc.movie.model.movie.Movie;
+import com.mlc.movie.model.person.Person;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -8,29 +8,28 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+
 @Data
 @Entity
-public class MovieUser {
+public class PersonUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     @EqualsAndHashCode.Exclude @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fan_id")
     private Fan fan;
     @EqualsAndHashCode.Exclude @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id")
+    private Person person;
 
-    // I had to add this constructor cause of this ex: "No default constructor for entity:  : com.mlc.movie.model.MovieUser"
-    public MovieUser(){
-
+    public PersonUser() {
     }
 
-    public MovieUser(Fan fan, Movie movie) {
+    public PersonUser(Fan fan, Person person) {
         this.fan = fan;
-        this.movie = movie;
+        this.person = person;
     }
 }

@@ -4,6 +4,7 @@ import com.mlc.movie.model.credit.cast.Cast;
 import com.mlc.movie.model.credit.crew.Crew;
 import com.mlc.movie.model.movie.Movie;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Credit {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "crew_id")
     private List<Crew> crew;
+    @ToString.Exclude
     @OneToOne(mappedBy = "credit")
     private Movie movie;
 

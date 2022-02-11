@@ -28,7 +28,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().headers().frameOptions().sameOrigin();
 
         http.formLogin()
-                .usernameParameter("username")
+                .usernameParameter("userName")
                 .passwordParameter("password")
                 .loginPage("/api/login");
 

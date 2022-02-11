@@ -1,7 +1,7 @@
 package com.mlc.movie.security;
 
-import com.mlc.movie.model.MovieUser;
-import com.mlc.movie.repository.MovieUserRepository;
+import com.mlc.movie.model.Fan;
+import com.mlc.movie.repository.FanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,14 +14,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
     @Autowired
-    MovieUserRepository movieUserRepository;
+    FanRepository fanRepository;
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(inputName -> {
-            MovieUser user = movieUserRepository.findByUsername(inputName);
-            if (user != null) {
-                return new User(user.getUsername(), user.getPassword(),
+            Fan fan = fanRepository.findByNickname(inputName);
+            if (fan != null) {
+                return new User(fan.getNickname(), fan.getPassword(),
                         AuthorityUtils.createAuthorityList("USER"));
             } else {
                 throw new UsernameNotFoundException("Unknown user: " + inputName);

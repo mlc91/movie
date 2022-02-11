@@ -1,7 +1,5 @@
 package com.mlc.movie.model.movie;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mlc.movie.model.MovieUser;
 import com.mlc.movie.model.credit.Credit;
 import com.mlc.movie.model.credit.crew.Crew;
@@ -9,13 +7,13 @@ import com.mlc.movie.model.genre.Genre;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
@@ -48,8 +46,8 @@ public class Movie {
     private Float popularity;
     private String posterPath;
     @ToString.Exclude
-    @OneToOne
-    private MovieUser movieUser;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private Set<MovieUser> movieUsers;
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "production_company_id")
 //    private List<ProductionCompany> productionCompanies;
