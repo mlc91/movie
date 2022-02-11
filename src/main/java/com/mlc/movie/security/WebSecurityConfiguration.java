@@ -10,6 +10,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.Objects;
+
 @Configuration
 public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
@@ -21,8 +23,13 @@ public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdap
         auth.userDetailsService(inputName -> {
             Fan fan = fanRepository.findByNickname(inputName);
             if (fan != null) {
-                return new User(fan.getNickname(), fan.getPassword(),
-                        AuthorityUtils.createAuthorityList("USER"));
+                if(Objects.equals(fan.getNickname(), "admin")) {
+                    return new User(fan.getNickname(), fan.getPassword(),
+                            AuthorityUtils.createAuthorityList("ADMIN"));
+                } else {
+                    return new User(fan.getNickname(), fan.getPassword(),
+                            AuthorityUtils.createAuthorityList("USER"));
+                }
             } else {
                 throw new UsernameNotFoundException("Unknown user: " + inputName);
             }

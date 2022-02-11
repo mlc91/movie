@@ -12,4 +12,5 @@ import java.util.List;
 @RepositoryRestResource
 public interface MovieUserRepository extends JpaRepository<MovieUser, Long> {
     List<MovieUser> findByFan(@Param("fan") Fan fan);
+    void deleteByMovie(@Param("movie") Movie movie);
 }

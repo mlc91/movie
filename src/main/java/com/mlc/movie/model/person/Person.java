@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,8 +36,11 @@ public class Person {
     private String profilePath;
     @ToString.Exclude
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    Set<PersonUser> personUsers;
-    
+    List<PersonUser> personUsers;
+
+    public Person() {
+    }
+
     public Map<String, Object> personDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
@@ -44,9 +48,6 @@ public class Person {
         dto.put("name", this.getName());
         dto.put("profilePath", this.getProfilePath());
         return dto;
-    }
-    public boolean isValid(){
-        return biography != null && birthday != null && deathday != null; //continuar
     }
 }
 

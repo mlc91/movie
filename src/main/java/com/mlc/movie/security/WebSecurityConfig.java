@@ -21,9 +21,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/web/**").permitAll()
                 .antMatchers("/api/movie/*").hasAuthority("USER")
                 .antMatchers("/api/person/*").hasAuthority("USER")
+                .antMatchers("/api/movies/*").hasAuthority("USER")
+                .antMatchers("/api/persons/*").hasAuthority("USER")
+                .antMatchers("/api/admin/*").hasAuthority("ADMIN")
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/api/movies/**").permitAll()
-                .antMatchers("/api/persons/**").permitAll()
+                .antMatchers("/api/search/**").permitAll()
                 .and().csrf().ignoringAntMatchers("/h2-console/**")
                 .and().headers().frameOptions().sameOrigin();
 

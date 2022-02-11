@@ -18,19 +18,17 @@ import static com.mlc.movie.util.URLHelper.*;
 
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
-@RequestMapping("/api")
+@RequestMapping("/api/search")
 public class SearchController {
 
     @Autowired
     MovieRepository movieRepository;
 
     @GetMapping("movies/query/{query}")
-    public MovieDTO getMoviesAPI(@PathVariable String query) throws JsonProcessingException {
-        Pageable firstPage = (Pageable) PageRequest.of(0, 10);
+    public  ResponseEntity<String> getMoviesAPI(@PathVariable String query)  {
         String url = urlBuilder(URLConstants.URL_SEARCH_MOVIES) + "&query=" + query;
         RestTemplate restTemplate = new RestTemplate();
-        MovieDTO movies = restTemplate.getForEntity(url, MovieDTO.class).getBody();
-        return movies;
+        return restTemplate.getForEntity(url, String.class);
     }
 
     @RequestMapping("movies/language/{query}/{language}")

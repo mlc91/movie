@@ -60,6 +60,9 @@ public class Movie {
     private Float voteAverage;
     private int voteCount;
 
+    public Movie() {
+    }
+
     public Map<String, Object> movieDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
@@ -75,11 +78,4 @@ public class Movie {
         //dto.put("productionCompanies", this.getProductionCompanies().stream().map(pc -> pc.productionCompanyDTO()).collect(Collectors.toList()));
         return dto;
     }
-
-    public boolean isValid() {
-        return tmdbId != null && backdropPath != null && credit != null
-                && homepage != null && originalLanguage != null && originalTitle != null && overview != null &&
-                popularity != null && posterPath != null && releaseDate != null && status  != null && title != null;
-    }
-
 }

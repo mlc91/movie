@@ -2,17 +2,12 @@ package com.mlc.movie.model.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mlc.movie.model.credit.Credit;
 import com.mlc.movie.model.credit.CreditDTO;
-import com.mlc.movie.model.credit.cast.CastDTO;
 import com.mlc.movie.model.genre.GenreDTO;
-import com.mlc.movie.model.productionCompany.ProductionCompanyDTO;
 import lombok.Data;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.mlc.movie.searchHelper.SearchHelper.getCreditFromAPI;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
