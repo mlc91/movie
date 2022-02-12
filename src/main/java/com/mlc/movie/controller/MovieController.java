@@ -127,9 +127,9 @@ public class MovieController {
             Page<Movie> allMovies = movieRepository.findAll(pageable);
             if (!allMovies.isEmpty()) {
                 Map<String, Object> dto = new LinkedHashMap<>();
-                String year = releaseYear.substring(0, 4);
+                // To get the Year from releaseDate: movie.getReleaseDate().substring(0, 4)
                 List<Movie> movies = allMovies.stream().filter(movie -> Objects.equals(movie
-                        .getReleaseDate().substring(0, 4), year)).collect(Collectors.toList());
+                        .getReleaseDate().substring(0, 4), releaseYear)).collect(Collectors.toList());
                 dto.put("movies", movies.stream().map(Movie::movieDTO));
                 return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
             } else {
@@ -146,8 +146,7 @@ public class MovieController {
      */
     @GetMapping(path = "movies/director/{director}")
     public ResponseEntity<Map<String, Object>> getDirector(@PathVariable int page,
-                                                                  @PathVariable String director,
-                                                                  Authentication authentication) {
+                                                           @PathVariable String director, Authentication authentication) {
         if (isGuest(authentication)) {
             return new ResponseEntity<>(makeMap("Error", "Unauthorized user"), HttpStatus.UNAUTHORIZED);
         } else {
@@ -182,34 +181,16 @@ public class MovieController {
             return new ResponseEntity<>(makeMap("Error", "Unauthorized user"), HttpStatus.UNAUTHORIZED);
         } else {
             Pageable pageable = PageRequest.of(page, 1);
-            UserApp currentUser = userAppRepository.findByNickname(authentication.getName());
-            Page<MovieUser> allMovieUsers = movieUserRepository.findAll(pageable);
-            if(!allMovieUsers.isEmpty()){
+            Page<Movie> allMovies = movieRepository.findAll(pageable);
+            if(!allMovies.isEmpty()){
                 Map<String, Object> dto = new LinkedHashMap<>();
-                List<Movie> matchedMovies = allMovieUsers.stream().filter(movieUser ->
-                                Objects.equals(movieUser.getMovie().getTitle(), name)
-                                        && movieUser.getUserApp().equals(currentUser))
-                        .map(MovieUser::getMovie)
+                List<Movie> matchedMovies = allMovies.stream().filter(movie -> Objects.equals(movie.getTitle(), name))
                         .collect(Collectors.toList());
+                dto.put("movies", matchedMovies.stream().map(Movie::movieDTO));
                 return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
-//        if (isGuest(authentication)) {
-//            return new ResponseEntity<>(makeMap("Error", "Unauthorized user"), HttpStatus.UNAUTHORIZED);
-//        } else {
-//            Pageable pageable = PageRequest.of(page, 1);
-//            Page<Movie> allMovies = movieRepository.findAll(pageable);
-//            if(!allMovies.isEmpty()){
-//                Map<String, Object> dto = new LinkedHashMap<>();
-//                List<Movie> matchedMovies = allMovies.stream().filter(movie -> Objects.equals(movie.getTitle(), name))
-//                        .collect(Collectors.toList());
-//                dto.put("movies", matchedMovies.stream().map(Movie::movieDTO));
-//                return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//            }
-//        }
     }
 }
