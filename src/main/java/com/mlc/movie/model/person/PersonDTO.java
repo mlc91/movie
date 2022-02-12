@@ -9,10 +9,13 @@ import lombok.Data;
 public class PersonDTO {
     @JsonProperty("id")
     private Long tmdbId;
+    @JsonProperty("adult")
+    private boolean isAdult;
     private String biography;
     private String birthday;
     private String deathday;
     private int gender;
+    private String homepage;
     @JsonProperty("imdb_id")
     private String imdbId;
     @JsonProperty("known_for_department")
@@ -27,10 +30,12 @@ public class PersonDTO {
     public static Person setPersonFromPersonDTO(PersonDTO personDTO){
         Person person = new Person();
         person.setTmdbId(personDTO.getTmdbId());
+        person.setAdult(personDTO.isAdult());
         person.setBiography(personDTO.getBiography());
         person.setBirthday(personDTO.getBirthday());
         person.setDeathday(personDTO.getDeathday());
         person.setGender(personDTO.getGender());
+        person.setHomepage(personDTO.getHomepage());
         person.setImdbId(personDTO.getImdbId());
         person.setKnownForDepartment(personDTO.getKnownForDepartment());
         person.setName(personDTO.getName());
@@ -39,5 +44,4 @@ public class PersonDTO {
         person.setProfilePath(personDTO.getProfilePath());
         return person;
     }
-
 }

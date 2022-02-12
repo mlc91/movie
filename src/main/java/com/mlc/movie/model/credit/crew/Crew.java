@@ -3,6 +3,8 @@ package com.mlc.movie.model.credit.crew;
 import com.mlc.movie.model.credit.Credit;
 import com.mlc.movie.model.person.Person;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -18,18 +20,30 @@ public class Crew {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
+    private Long tmdbId;
+    private boolean isAdult;
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="credit_id")
     private Credit credit;
     private String department;
+    private String gender;
     private String job;
     private String name;
+    private String popularity;
+
+    public Crew() {
+    }
 
     public Map<String, Object> crewDTO() {
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
+        dto.put("adult", this.isAdult());
         dto.put("department", this.getDepartment());
+        dto.put("gender", this.getGender());
         dto.put("job", this.getJob());
         dto.put("name", this.getName());
+        dto.put("popularity", this.getPopularity());
         return dto;
     }
 

@@ -62,5 +62,4 @@ public class MovieDTO {
         movie.setVoteCount(movieDTO.getVoteCount());
         return movie;
     }
-
 }

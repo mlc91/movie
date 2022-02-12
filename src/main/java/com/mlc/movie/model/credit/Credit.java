@@ -9,8 +9,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
@@ -22,11 +22,11 @@ public class Credit {
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cast_id")
-    private List<Cast> cast;
+    @JoinColumn(name = "crew_id")
+    private Set<Cast> cast;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "crew_id")
-    private List<Crew> crew;
+    private Set<Crew> crew;
     @ToString.Exclude
     @OneToOne(mappedBy = "credit")
     private Movie movie;
@@ -34,8 +34,8 @@ public class Credit {
     public Map<String, Object> creditDTO() {
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
-        dto.put("cast", this.getCast().stream().map(cast -> cast.castDTO()).collect(Collectors.toList()));
-        dto.put("crew", this.getCrew().stream().map(crew -> crew.crewDTO()).collect(Collectors.toList()));
+        dto.put("cast", this.getCast().stream().map(Cast::castDTO).collect(Collectors.toSet()));
+        dto.put("crew", this.getCrew().stream().map(Crew::crewDTO).collect(Collectors.toSet()));
         return dto;
     }
 }

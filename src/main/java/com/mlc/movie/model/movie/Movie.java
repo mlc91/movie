@@ -61,6 +61,9 @@ public class Movie {
     public Map<String, Object> movieDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", this.getId());
+        dto.put("adult", this.isAdult());
+        dto.put("backdropPath", this.getBackdropPath());
+        dto.put("budget", this.getBudget());
         dto.put("credit", this.getCredit().creditDTO());
         // One movie could have more than one director
         dto.put("director", this.getCredit().getCrew().stream()
@@ -69,7 +72,17 @@ public class Movie {
                 .stream().map(Crew::getName));
         dto.put("genres", this.getGenres().stream().map(Genre::genreDTO).collect(Collectors.toList()));
         dto.put("homepage", this.getHomepage());
+        dto.put("originalLanguage", this.getOriginalLanguage());
         dto.put("originalTitle", this.getOriginalTitle());
+        dto.put("overview", this.getOverview());
+        dto.put("popularity", this.getPopularity());
+        dto.put("posterPath", this.getPosterPath());
+        dto.put("releaseDate", this.getReleaseDate());
+        dto.put("revenue", this.getRevenue());
+        dto.put("status", this.getStatus());
+        dto.put("title", this.getTitle());
+        dto.put("voteAverage", this.getVoteAverage());
+        dto.put("voteCount", this.getVoteCount());
         return dto;
     }
 }

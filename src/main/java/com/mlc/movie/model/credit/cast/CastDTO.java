@@ -11,14 +11,23 @@ public class CastDTO {
     @JsonProperty("id")
     private Long tmdbId;
     private String character;
+    @JsonProperty("adult")
+    private boolean isAdult;
+    private String gender;
     private String name;
-    private int order;
+    @JsonProperty("order")
+    private int castOrder;
+    private String popularity;
 
     public static Cast setCastFromCastDTO(CastDTO castDTO){
         Cast cast = new Cast();
+        cast.setTmdbId(castDTO.getTmdbId());
+        cast.setAdult(castDTO.isAdult());
         cast.setCharacter(castDTO.getCharacter());
+        cast.setGender(castDTO.getGender());
         cast.setName(castDTO.getName());
-        cast.setCastOrder(castDTO.getOrder());
+        cast.setCastOrder(castDTO.getCastOrder());
+        cast.setPopularity(castDTO.getPopularity());
         return cast;
     }
 }
