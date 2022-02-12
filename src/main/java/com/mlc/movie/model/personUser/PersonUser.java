@@ -9,7 +9,9 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-
+/**
+ * The PersonUser class it and intermediate Entity to relate Person Entity with UserApp Entity.
+ */
 @Data
 @Entity
 public class PersonUser {

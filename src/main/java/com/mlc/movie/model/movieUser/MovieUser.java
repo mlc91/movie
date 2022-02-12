@@ -9,6 +9,9 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+/**
+ * The MovieUser class it and intermediate Entity to relate Movie Entity with UserApp Entity.
+ */
 @Data
 @Entity
 public class MovieUser {

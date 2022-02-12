@@ -11,6 +11,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The Person class contains all the properties of a person (actor, director, writer, etc.).
+ */
 @Data
 @Entity
 @Table(name = "PERSON")
@@ -59,5 +62,3 @@ public class Person {
         return dto;
     }
 }
-
-//TODO: TERMINAR DE POPULAR LOS DTOS DE TODAS LAS ENTIDADES

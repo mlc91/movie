@@ -13,6 +13,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The Credit class contains all the properties to build a credit member of a movie.
+ * It contains a set of cast and crew.
+ */
 @Data
 @Entity
 public class Credit {

@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-
+/**
+ * The CastDTO class contains all the properties to retrieve information
+ * to the TMDB API to fill in the Cast Entity.
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CastDTO {
@@ -19,6 +22,11 @@ public class CastDTO {
     private int castOrder;
     private String popularity;
 
+    /**
+     * Creates a Cast object from CastDTO.
+     * @param castDTO
+     * @return cast
+     */
     public static Cast setCastFromCastDTO(CastDTO castDTO){
         Cast cast = new Cast();
         cast.setTmdbId(castDTO.getTmdbId());

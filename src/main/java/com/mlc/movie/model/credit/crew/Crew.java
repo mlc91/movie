@@ -1,9 +1,7 @@
 package com.mlc.movie.model.credit.crew;
 
 import com.mlc.movie.model.credit.Credit;
-import com.mlc.movie.model.person.Person;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -11,6 +9,9 @@ import javax.persistence.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * The Crew class contains all the properties to build a crew member of a movie.
+ */
 @Data
 @Entity
 @Table(name = "CREW")

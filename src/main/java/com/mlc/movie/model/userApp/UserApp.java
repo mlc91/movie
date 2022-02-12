@@ -9,6 +9,9 @@ import javax.persistence.*;
 import java.util.Set;
 
 // I couldn't use @Data annotation for this class -> it threw an exception
+/**
+ * The UserApp class contains all the properties of a user.
+ */
 @Entity
 public class UserApp {
     @Id

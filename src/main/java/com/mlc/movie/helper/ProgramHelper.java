@@ -20,8 +20,17 @@ import static com.mlc.movie.model.person.PersonDTO.setPersonFromPersonDTO;
 import static com.mlc.movie.helper.URLHelper.urlBuilderTwoParamWithId;
 import static com.mlc.movie.helper.URLHelper.urlBuilderWithId;
 
+/**
+ * The ProgramHelper is a Helper class that implements the necessary
+ * methods used in the respective controllers.
+ */
 public class ProgramHelper {
 
+    /**
+     * Gets the Person properties from the API and populate a Person.
+     * @param tmdbId
+     * @return person
+     */
     public static Person getPersonFromAPI(Long tmdbId){
         String url = urlBuilderWithId(tmdbId, URLConstants.URL_SEARCH_PERSON);
         RestTemplate restTemplate = new RestTemplate();
@@ -29,6 +38,11 @@ public class ProgramHelper {
         return setPersonFromPersonDTO(personDTO.getBody());
     }
 
+    /**
+     * Gets the Movie properties from the API and populate a Movie.
+     * @param tmdbId
+     * @return movie
+     */
     public static Movie getMovieFromAPI(Long tmdbId){
         String urlMovie = urlBuilderWithId(tmdbId, URLConstants.URL_SEARCH_MOVIE);
         String urlCredit = urlBuilderTwoParamWithId(tmdbId, URLConstants.URL_SEARCH_MOVIE, URL_SEARCH_CREDITS);
@@ -40,10 +54,21 @@ public class ProgramHelper {
         return setMovieFromMovieDTO(movieDTO);
     }
 
+    /**
+     * Verifies if there is a User logged.
+     * @param authentication
+     * @return TRUE if there is a User logged, FALSE if not.
+     */
     public static boolean isGuest(Authentication authentication){
         return authentication == null || authentication instanceof AnonymousAuthenticationToken;
     }
 
+    /**
+     * Helper method to create a map.
+     * @param key
+     * @param value
+     * @return map
+     */
     public static Map<String, Object> makeMap(String key, Object value){
         Map<String, Object> map = new HashMap<>();
         map.put(key, value);

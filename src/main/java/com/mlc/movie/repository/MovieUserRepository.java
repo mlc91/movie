@@ -8,6 +8,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
+/**
+ * The MovieUserRepository class manages the persistence of the MovieUser Entity.
+ */
 @RepositoryRestResource
 public interface MovieUserRepository extends JpaRepository<MovieUser, Long> {
     List<MovieUser> findByUserApp(@Param("userApp") UserApp userApp);

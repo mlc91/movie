@@ -16,6 +16,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The Movie class contains all the properties of a movie.
+ */
 @Data
 @Entity
 @Table(name = "MOVIE")
@@ -29,7 +32,6 @@ public class Movie {
     private boolean isAdult;
     private String backdropPath;
     private int budget;
-    // TODO PROBLEM WITH SOME EXCEPTION
     @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CREDIT_ID", referencedColumnName = "id", nullable = false)
@@ -40,7 +42,6 @@ public class Movie {
     private String homepage;
     private String originalLanguage;
     private String originalTitle;
-    // TODO OVERVIEW TOO LONG. I HAVE TO USE @LOB ANNOTATION
     @Lob
     private String overview;
     private Float popularity;

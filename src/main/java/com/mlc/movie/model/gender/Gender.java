@@ -1,5 +1,8 @@
 package com.mlc.movie.model.gender;
 
+/**
+ * The Gender enum contains retrieve the person's gender.
+ */
 public enum Gender {
     MALE(2),
     FEMALE(1),

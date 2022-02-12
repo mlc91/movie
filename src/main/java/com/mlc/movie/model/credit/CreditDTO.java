@@ -9,6 +9,10 @@ import lombok.Data;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The CreditDTO class contains all the properties to retrieve information
+ * to the TMDB API to fill in the Credit Entity.
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreditDTO {
@@ -19,6 +23,11 @@ public class CreditDTO {
     @JsonProperty("crew")
     private Set<CrewDTO> crews;
 
+    /**
+     * Creates a Credit object from CreditDTO.
+     * @param creditDTO
+     * @return credit
+     */
     public static Credit setCreditFromCreditDTO(CreditDTO creditDTO) {
         Credit credit = new Credit();
         credit.setCast(creditDTO.getCasts().stream().map(CastDTO::setCastFromCastDTO).collect(Collectors.toSet()));

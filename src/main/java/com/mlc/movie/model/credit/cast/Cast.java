@@ -1,8 +1,6 @@
 package com.mlc.movie.model.credit.cast;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mlc.movie.model.credit.Credit;
-import com.mlc.movie.model.person.Person;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -10,6 +8,9 @@ import javax.persistence.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * The Cast class contains all the properties to build a cast member of a movie.
+ */
 @Data
 @Entity
 @Table(name = "CAST")

@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+/**
+ * The PersonDTO class contains all the properties to retrieve information
+ * to the TMDB API to fill in the Person Entity.
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
 public class PersonDTO {
@@ -27,6 +31,11 @@ public class PersonDTO {
     @JsonProperty("profile_path")
     private String profilePath;
 
+    /**
+     * Creates a Person object from PersonDTO.
+     * @param personDTO
+     * @return person
+     */
     public static Person setPersonFromPersonDTO(PersonDTO personDTO){
         Person person = new Person();
         person.setTmdbId(personDTO.getTmdbId());

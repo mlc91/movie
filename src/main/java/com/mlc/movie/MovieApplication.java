@@ -21,13 +21,5 @@ public class MovieApplication {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 
-	@Bean
-	public CommandLineRunner initData(UserAppRepository userAppRepository) {
-		return (args) -> {
-			UserApp userApp = userAppRepository.save(new UserApp("admin", passwordEncoder().encode("123")));
-			UserApp userApp1 = userAppRepository.save(new UserApp("raqui", passwordEncoder().encode("123")));
-		};
-	}
 }
-// todo: BORRAR TODOS LOS IMPORTS NO UTILIZADOS
 

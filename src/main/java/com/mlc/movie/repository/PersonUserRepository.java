@@ -8,6 +8,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
+/**
+ * The PersonUserRepository class manages the persistence of the PersonUser Entity.
+ */
 @RepositoryRestResource
 public interface PersonUserRepository extends JpaRepository<PersonUser, Long> {
     List<PersonUser> findByUserApp(@Param("userApp") UserApp userApp);

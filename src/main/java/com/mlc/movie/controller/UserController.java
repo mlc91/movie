@@ -12,6 +12,9 @@ import java.util.Map;
 
 import static com.mlc.movie.helper.ProgramHelper.makeMap;
 
+/**
+ * The UserController class implement the method to register a new UserApp.
+ */
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RequestMapping("/api")
@@ -22,6 +25,12 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    /**
+     * Save a User in the DB.
+     * @param @RequestParam username
+     * @param @RequestParam password
+     * @return responseEntity
+     */
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> addUser(@RequestParam String username, @RequestParam String password){
 

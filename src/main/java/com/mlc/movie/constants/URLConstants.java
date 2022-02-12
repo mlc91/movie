@@ -1,6 +1,8 @@
 package com.mlc.movie.constants;
 
-
+/**
+ * The URLConstants class contains the all the constants to re-create the used URL's
+ */
 public class URLConstants {
     public final static String URL_API = "https://api.themoviedb.org/3/";
     public final static String API_KEY = "fcc99eaef0e81ed1ea81c258bd54257b";

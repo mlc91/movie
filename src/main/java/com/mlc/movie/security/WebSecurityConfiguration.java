@@ -12,6 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Objects;
 
+/**
+ * The WebSecurityConfiguration class override the "init" method from GlobalAuthenticationConfigurerAdapter.
+ */
 @Configuration
 public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 

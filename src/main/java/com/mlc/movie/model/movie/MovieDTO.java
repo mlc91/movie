@@ -9,8 +9,12 @@ import lombok.Data;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The MovieDTO class contains all the properties to retrieve information
+ * to the TMDB API to fill in the Movie Entity.
+ */
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true) //this anotation is in case the api changes
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieDTO {
     @JsonProperty("id")
     private Long tmdbId;
@@ -40,6 +44,11 @@ public class MovieDTO {
     // Not retrieve from the "movie JSON"
     private CreditDTO creditDTO;
 
+    /**
+     * Creates a Movie object from MovieDTO.
+     * @param movieDTO
+     * @return movie
+     */
     public static Movie setMovieFromMovieDTO(MovieDTO movieDTO){
         Movie movie = new Movie();
         movie.setTmdbId(movieDTO.getTmdbId());
