@@ -1,5 +1,6 @@
-package com.mlc.movie.model;
+package com.mlc.movie.model.movieUser;
 
+import com.mlc.movie.model.userApp.UserApp;
 import com.mlc.movie.model.movie.Movie;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,20 +18,20 @@ public class MovieUser {
     private Long id;
     @EqualsAndHashCode.Exclude @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "fan_id")
-    private Fan fan;
+    @JoinColumn(name = "userApp_id")
+    private UserApp userApp;
     @EqualsAndHashCode.Exclude @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    // I had to add this constructor cause of this ex: "No default constructor for entity:  : com.mlc.movie.model.MovieUser"
+    // I had to add this constructor cause of this ex: "No default constructor for entity:  : com.mlc.movie.model.movieUser.MovieUser"
     public MovieUser(){
 
     }
 
-    public MovieUser(Fan fan, Movie movie) {
-        this.fan = fan;
+    public MovieUser(UserApp userApp, Movie movie) {
+        this.userApp = userApp;
         this.movie = movie;
     }
 }

@@ -1,7 +1,7 @@
 package com.mlc.movie.security;
 
-import com.mlc.movie.model.Fan;
-import com.mlc.movie.repository.FanRepository;
+import com.mlc.movie.model.userApp.UserApp;
+import com.mlc.movie.repository.UserAppRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,18 +16,18 @@ import java.util.Objects;
 public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
     @Autowired
-    FanRepository fanRepository;
+    UserAppRepository userAppRepository;
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(inputName -> {
-            Fan fan = fanRepository.findByNickname(inputName);
-            if (fan != null) {
-                if(Objects.equals(fan.getNickname(), "admin")) {
-                    return new User(fan.getNickname(), fan.getPassword(),
+            UserApp userApp = userAppRepository.findByNickname(inputName);
+            if (userApp != null) {
+                if(Objects.equals(userApp.getNickname(), "admin")) {
+                    return new User(userApp.getNickname(), userApp.getPassword(),
                             AuthorityUtils.createAuthorityList("ADMIN"));
                 } else {
-                    return new User(fan.getNickname(), fan.getPassword(),
+                    return new User(userApp.getNickname(), userApp.getPassword(),
                             AuthorityUtils.createAuthorityList("USER"));
                 }
             } else {

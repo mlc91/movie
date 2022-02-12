@@ -1,7 +1,6 @@
 package com.mlc.movie.model.person;
 
-import com.mlc.movie.model.PersonUser;
-import com.mlc.movie.model.Fan;
+import com.mlc.movie.model.personUser.PersonUser;
 import com.mlc.movie.model.gender.Gender;
 import lombok.Data;
 import lombok.ToString;
@@ -11,7 +10,6 @@ import javax.persistence.*;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Data
 @Entity

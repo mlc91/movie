@@ -1,5 +1,6 @@
-package com.mlc.movie.model;
+package com.mlc.movie.model.personUser;
 
+import com.mlc.movie.model.userApp.UserApp;
 import com.mlc.movie.model.person.Person;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,8 +19,8 @@ public class PersonUser {
     private Long id;
     @EqualsAndHashCode.Exclude @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fan_id")
-    private Fan fan;
+    @JoinColumn(name = "userApp_id")
+    private UserApp userApp;
     @EqualsAndHashCode.Exclude @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
@@ -28,8 +29,8 @@ public class PersonUser {
     public PersonUser() {
     }
 
-    public PersonUser(Fan fan, Person person) {
-        this.fan = fan;
+    public PersonUser(UserApp userApp, Person person) {
+        this.userApp = userApp;
         this.person = person;
     }
 }

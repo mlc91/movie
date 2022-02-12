@@ -1,20 +1,13 @@
 package com.mlc.movie.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.mlc.movie.URLConstants;
-import com.mlc.movie.model.credit.CreditDTO;
-import com.mlc.movie.model.movie.MovieDTO;
+import com.mlc.movie.constants.URLConstants;
 import com.mlc.movie.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.awt.print.Pageable;
-
-import static com.mlc.movie.URLConstants.URL_SEARCH_CREDITS;
-import static com.mlc.movie.util.URLHelper.*;
+import static com.mlc.movie.helper.URLHelper.*;
 
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})

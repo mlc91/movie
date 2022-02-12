@@ -28,10 +28,6 @@ public class MovieDTO {
     private Float popularity;
     @JsonProperty("poster_path")
     private String posterPath;
-//    @JsonProperty("production_companies")
-//    private List<ProductionCompanyDTO> productionCompanies;
-//    @JsonProperty("production_countries")
-//    private List<ProductionCountryDTO> productionCountries;
     @JsonProperty("release_date")
     private String releaseDate;
     private int revenue;
@@ -58,9 +54,6 @@ public class MovieDTO {
         movie.setOverview(movieDTO.getOverview());
         movie.setPopularity(movieDTO.getPopularity());
         movie.setPosterPath(movieDTO.getPosterPath());
-//        movie.setProductionCompanies(movieDTO.getProductionCompanies()
-//                .stream().map(ProductionCompanyDTO::setPCompanyFromPCompanyDTO).collect(Collectors.toList()));
-//        movie.setProductionCountries(movieDTO.getProductionCountries());
         movie.setReleaseDate(movieDTO.getReleaseDate());
         movie.setRevenue(movieDTO.getRevenue());
         movie.setStatus(movieDTO.getStatus());

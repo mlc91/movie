@@ -1,6 +1,6 @@
 package com.mlc.movie.model.movie;
 
-import com.mlc.movie.model.MovieUser;
+import com.mlc.movie.model.movieUser.MovieUser;
 import com.mlc.movie.model.credit.Credit;
 import com.mlc.movie.model.credit.crew.Crew;
 import com.mlc.movie.model.genre.Genre;
@@ -48,11 +48,6 @@ public class Movie {
     @ToString.Exclude
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private Set<MovieUser> movieUsers;
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "production_company_id")
-//    private List<ProductionCompany> productionCompanies;
-//    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-//    private List<ProductionCountry> productionCountries;
     private String releaseDate;
     private int revenue;
     private String status;
@@ -75,7 +70,6 @@ public class Movie {
         dto.put("genres", this.getGenres().stream().map(Genre::genreDTO).collect(Collectors.toList()));
         dto.put("homepage", this.getHomepage());
         dto.put("originalTitle", this.getOriginalTitle());
-        //dto.put("productionCompanies", this.getProductionCompanies().stream().map(pc -> pc.productionCompanyDTO()).collect(Collectors.toList()));
         return dto;
     }
 }
