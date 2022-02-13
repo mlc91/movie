@@ -144,7 +144,7 @@ public class MovieController {
      * @param authentication
      * @return responseEntity
      */
-    @GetMapping(path = "movies/director/{director}")
+    @GetMapping(path = "movies/director/{director}/{page}")
     public ResponseEntity<Map<String, Object>> getDirector(@PathVariable int page,
                                                            @PathVariable String director, Authentication authentication) {
         if (isGuest(authentication)) {
@@ -166,7 +166,6 @@ public class MovieController {
             }
         }
     }
-
     /**
      * Get a Movie by name.
      * @param name
