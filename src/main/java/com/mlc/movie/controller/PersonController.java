@@ -102,5 +102,4 @@ public class PersonController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
-
 }
