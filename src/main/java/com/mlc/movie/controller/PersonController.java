@@ -89,7 +89,7 @@ public class PersonController {
      * @param authentication
      * @return responseEntity
      */
-    @GetMapping(path = "person/delete/{personUserId}")
+    @DeleteMapping(path = "person/{personUserId}")
     public ResponseEntity<Map<String, Object>> deletePerson(@PathVariable Long personUserId, Authentication authentication) {
         if (isGuest(authentication)) {
             return new ResponseEntity<>(makeMap("Error", "Unauthorized user"), HttpStatus.UNAUTHORIZED);

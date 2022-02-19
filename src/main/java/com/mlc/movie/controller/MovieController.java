@@ -96,7 +96,7 @@ public class MovieController {
      * @param authentication
      * @return responseEntity
      */
-    @GetMapping(path = "movie/delete/{movieUserId}")
+    @DeleteMapping(path = "movie/{movieUserId}")
     public ResponseEntity<Map<String, Object>> deleteMovie(@PathVariable Long movieUserId, Authentication authentication) {
         if (isGuest(authentication)) {
             return new ResponseEntity<>(makeMap("error", "Unauthorized user"), HttpStatus.UNAUTHORIZED);
